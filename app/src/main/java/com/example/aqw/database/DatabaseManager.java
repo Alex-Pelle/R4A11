@@ -27,10 +27,6 @@ public class DatabaseManager {
     public DatabaseManager open() throws SQLDataException {
         dbHelper = new DatabaseHelper(context);
         database = dbHelper.getWritableDatabase();
-        database.execSQL("DELETE FROM composition");
-        database.execSQL("DELETE FROM selection");
-        database.execSQL("DELETE FROM planning");
-        database.delete(DatabaseHelper.TABLE_SEANCE,"",null);
         return this;
     }
 
@@ -136,5 +132,10 @@ public class DatabaseManager {
         }
         cursor.close();
         return exercices;
+    }
+
+    public void emptyDatabase() {
+        dbHelper.onUpgrade(database,0,0);
+        dbHelper.onCreate(database);
     }
 }

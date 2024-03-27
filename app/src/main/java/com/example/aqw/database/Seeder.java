@@ -6,6 +6,7 @@ import com.example.aqw.modele.Seance;
 
 public class Seeder {
     public void seed(DatabaseManager manager) {
+        manager.emptyDatabase();
         Exercice bench5x5 = new Exercice("Développé couché",5,5);
         Exercice ohp3x8 = new Exercice("Développé militaire",3,8);
         Exercice el3x12 = new Exercice("Élévations latérales",3,12);
