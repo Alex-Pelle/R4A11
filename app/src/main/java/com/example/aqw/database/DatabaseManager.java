@@ -17,7 +17,7 @@ import java.util.List;
 public class DatabaseManager {
     private static final String TAG = DatabaseManager.class.getSimpleName();
     private DatabaseHelper dbHelper;
-    private Context context;
+    private final Context context;
     private SQLiteDatabase database;
 
     public DatabaseManager(Context context) {
@@ -38,6 +38,10 @@ public class DatabaseManager {
         dbHelper.close();
     }
 
+    public void seed() {
+        Seeder seeder = new Seeder();
+        seeder.seed(this);
+    }
     private long insertExercice(Exercice exercice, long idSeance) {
         ContentValues contentValues = new ContentValues();
         Log.v(TAG,"Insertion exercice : "+exercice.getNom());
@@ -87,7 +91,7 @@ public class DatabaseManager {
 
 
             for (Planning.Jour jour : Planning.Jour.values()) {
-                Integer idSeanceDuJour = cursor.getInt(cursor.getColumnIndex(jour.name().toLowerCase()));
+                int idSeanceDuJour = cursor.getInt(cursor.getColumnIndex(jour.name().toLowerCase()));
                 if (!cursor.isNull(cursor.getColumnIndex(jour.name().toLowerCase()))) {
                     planning.setSeance(jour,fetchSeance(idSeanceDuJour));
                 }
