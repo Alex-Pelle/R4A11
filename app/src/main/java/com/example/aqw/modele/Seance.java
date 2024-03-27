@@ -15,10 +15,10 @@ public class Seance implements Iterable<Exercice>{
         this.exercices = new ArrayList<>();
     }
 
-    private void addExercice(Exercice exercice) {
+    public void addExercice(Exercice exercice) {
         exercices.add(exercice);
     }
-    private void addExercices(Collection<Exercice> exercices) {
+    public void addExercices(Collection<Exercice> exercices) {
         this.exercices.addAll(exercices);
     }
 
@@ -53,5 +53,25 @@ public class Seance implements Iterable<Exercice>{
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder toString = new StringBuilder(getNom());
+        for (Exercice exo: this) {
+            toString.append(System.lineSeparator()).append("    ").append(exo);
+        }
+        return toString.toString();
+    }
+
+    public String toString(String indent) {
+        StringBuilder toString = new StringBuilder(indent + getNom() +" :");
+        for (Exercice exo: this) {
+            toString.append(System.lineSeparator());
+            toString.append("    ");
+            toString.append(indent);
+            toString.append(exo);
+        }
+        return toString.toString();
     }
 }

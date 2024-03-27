@@ -51,4 +51,8 @@ public class Exercice {
         }
         return false;
     }
+    @Override
+    public String toString() {
+        return getNom() + " " + getNbSeries() + "x" + getNbRepetitions();
+    }
 }
