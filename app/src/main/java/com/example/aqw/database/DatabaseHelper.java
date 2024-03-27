@@ -7,9 +7,31 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "GYMTRACKER.DB";
     static final int DATABASE_VERSION = 1;
+    static final String TABLE_PLANNING = "planning";
+    static final String TABLE_SEANCE = "seance";
+    static final String TABLE_SELECTION = "selection";
+    static final String TABLE_COMPOSITION = "composition";
+    static final String PLANNING_NOM = "nom";
+    static final String PLANNING_LUNDI = "lundi";
+    static final String PLANNING_MARDI = "mardi";
+    static final String PLANNING_MERCREDI = "mercredi";
+    static final String PLANNING_JEUDI = "jeudi";
+    static final String PLANNING_VENDREDI = "vendredi";
+    static final String PLANNING_SAMEDI = "samedi";
+    static final String PLANNING_DIMANCHE = "dimanche";
+    static final String SEANCE_ID = "id";
+    static final String SEANCE_NOM = "nom";
+    static final String SELECTION_ID = "id";
+    static final String SELECTION_NOM = "nom";
+    static final String SELECTION_TIMESTAMPS = "ts";
+    static final String COMPOSITION_ID = "id";
+    static final String COMPOSITION_ID_SEANCE = "id_seance";
+    static final String COMPOSITION_NOM_EXERCICE = "nom_exercice";
+    static final String COMPOSITION_NOMBRE_SERIES = "nombre_series";;
+    static final String COMPOSITION_NOMBRE_REPETITIONS = "nombre_repetitions";
+
     static final String CREATE_TABLE_PLANNING_QUERY = "CREATE TABLE planning (" +
-            "  id INTEGER PRIMARY KEY AUTOINCREMENT," +
-            "  nom VARCHAR(25)," +
+            "  nom VARCHAR(25) PRIMARY KEY," +
             "  lundi INTEGER," +
             "  mardi INTEGER," +
             "  mercredi INTEGER," +
