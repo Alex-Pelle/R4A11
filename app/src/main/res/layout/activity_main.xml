@@ -4,45 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.activity.MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/bienvenueText"
         android:layout_width="410dp"
         android:layout_height="61dp"
-        android:layout_marginTop="132dp"
-        android:text="TextView"
+        android:layout_marginTop="44dp"
+        android:text="Bienvenue sur GymTracker !"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/seanceDuJourText"
         android:layout_width="200dp"
         android:layout_height="51dp"
         android:layout_marginTop="12dp"
-        android:text="TextView"
+        android:text="Séance du jour : "
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/bienvenueText" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/nomSeanceDuJourText"
         android:layout_width="179dp"
         android:layout_height="51dp"
         android:layout_marginTop="12dp"
-        android:text="TextView"
+        android:text="Nom de la séance"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/bienvenueText" />
 
-    <ListView
-        android:layout_width="413dp"
-        android:layout_height="431dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <include
+        layout="@layout/list_layout"
+        android:layout_width="415dp"
+        android:layout_height="531dp"
+        android:layout_marginTop="99dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bienvenueText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
