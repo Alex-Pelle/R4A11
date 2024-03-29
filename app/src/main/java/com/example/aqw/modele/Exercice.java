@@ -6,11 +6,13 @@ public class Exercice implements Cloneable {
     private String nom;
     private int nbSeries;
     private int nbRepetitions;
+    private String notes;
 
-    public Exercice(String nom, int nbSeries, int nbRepetitions){
+    public Exercice(String nom, int nbSeries, int nbRepetitions, String notes){
         this.nom = nom;
         this.nbSeries = nbSeries;
         this.nbRepetitions = nbRepetitions;
+        this.notes = notes;
     }
     public String getNom() {
         return nom;
@@ -51,7 +53,7 @@ public class Exercice implements Cloneable {
     }
     @Override
     public String toString() {
-        return getNom() + " " + getNbSeries() + "x" + getNbRepetitions();
+        return getNom() + " " + getNbSeries() + "x" + getNbRepetitions() +  (!getNotes().isEmpty() ? " ["+getNotes() + "]":"");
     }
 
     @Override
@@ -61,5 +63,13 @@ public class Exercice implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
 }

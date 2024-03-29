@@ -23,7 +23,7 @@ public class Planning implements Cloneable{
         this.nom = nom;
         this.plan = new HashMap<>();
     }
-
+    @NonNull
     public String getNom() {
         return nom;
     }
@@ -40,6 +40,7 @@ public class Planning implements Cloneable{
         return this.plan.get(jour);
     }
 
+    @NonNull
     @Override
     public String toString() {
         StringBuilder toString = new StringBuilder(getNom());
@@ -57,6 +58,7 @@ public class Planning implements Cloneable{
         return toString.toString();
     }
 
+    @NonNull
     @Override
     public Planning clone() {
         Planning clone = new Planning(this.nom);

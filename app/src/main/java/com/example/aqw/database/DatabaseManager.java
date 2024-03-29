@@ -46,6 +46,7 @@ public class DatabaseManager {
         contentValues.put(DatabaseHelper.COMPOSITION_ID_SEANCE, idSeance);
         contentValues.put(DatabaseHelper.COMPOSITION_NOMBRE_SERIES, exercice.getNbSeries());
         contentValues.put(DatabaseHelper.COMPOSITION_NOMBRE_REPETITIONS, exercice.getNbRepetitions());
+        contentValues.put(DatabaseHelper.COMPOSITION_NOTES, exercice.getNotes());
         return database.insert(DatabaseHelper.TABLE_COMPOSITION, null, contentValues);
     }
 
@@ -103,6 +104,29 @@ public class DatabaseManager {
         return plannings;
     }
 
+    @SuppressLint("Range")
+    public Planning fetchPlanning(String nom) {
+        Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING + " WHERE "+DatabaseHelper.PLANNING_NOM +" = ?",new String[]{nom});
+
+        Planning planning;
+        cursor.moveToFirst();
+        if (cursor.isAfterLast()) {
+            return null;
+        }
+
+        planning  = new Planning(cursor.getString(cursor.getColumnIndex(DatabaseHelper.PLANNING_NOM)));
+
+
+        for (Planning.Jour jour : Planning.Jour.values()) {
+            int idSeanceDuJour = cursor.getInt(cursor.getColumnIndex(jour.name().toLowerCase()));
+            if (!cursor.isNull(cursor.getColumnIndex(jour.name().toLowerCase()))) {
+                planning.setSeance(jour,fetchSeance(idSeanceDuJour));
+            }
+        }
+        cursor.close();
+        return planning;
+    }
+
     private Seance fetchSeance(int id) {
         Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_SEANCE+" WHERE "+DatabaseHelper.SEANCE_ID+ " = ?",new String[]{""+id});
         Seance seance = null;
@@ -128,8 +152,9 @@ public class DatabaseManager {
             exercices.add(new Exercice(
                     cursor.getString(cursor.getColumnIndex(DatabaseHelper.COMPOSITION_NOM_EXERCICE)),
                     cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COMPOSITION_NOMBRE_SERIES)),
-                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COMPOSITION_NOMBRE_REPETITIONS))
-                    ));
+                    cursor.getInt(cursor.getColumnIndex(DatabaseHelper.COMPOSITION_NOMBRE_REPETITIONS)),
+                    cursor.getString(cursor.getColumnIndex(DatabaseHelper.COMPOSITION_NOTES))
+            ));
             cursor.moveToNext();
         }
         cursor.close();
@@ -174,6 +199,26 @@ public class DatabaseManager {
             }
         }
         cursor.close();
+    }
+
+    public void choisirPlanning(Planning planning) {
+        if (fetchPlanning(planning.getNom()) == null) {
+            insertPlanning(planning);
+        }
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.SELECTION_NOM, planning.getNom());
+        contentValues.put(DatabaseHelper.SELECTION_TIMESTAMPS, System.currentTimeMillis());
+
+        database.insert(DatabaseHelper.TABLE_SELECTION,null,contentValues);
+    }
+
+    public Planning getChoix() {
+        String[] colonnes = new String[]{DatabaseHelper.PLANNING_NOM};
+        String orderBy = DatabaseHelper.SELECTION_TIMESTAMPS + " desc";
+        String limit = "1";
+        Cursor cursor = database.query(DatabaseHelper.TABLE_SELECTION,colonnes,null,null,null,null,orderBy,limit);
+        cursor.moveToFirst();
+        return fetchPlanning(cursor.getString(0));
     }
 
     private void deleteSeance(int idSeanceDuJour) {
