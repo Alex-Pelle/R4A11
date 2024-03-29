@@ -44,5 +44,14 @@ public class Seeder {
         ppl.setSeance(Planning.Jour.SAMEDI, legs);
 
         manager.insertPlanning(ppl);
+
+        manager.deletePlanning(ppl);
+
+        manager.insertPlanning(ppl);
+
+        Planning ppl2 = ppl.clone();
+        ppl2.setNom("Push pull legs");
+
+        manager.updatePlanning(ppl, ppl2);
     }
 }

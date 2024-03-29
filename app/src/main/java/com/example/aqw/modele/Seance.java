@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Seance implements Iterable<Exercice>{
+public class Seance implements Iterable<Exercice>, Cloneable{
     private List<Exercice> exercices;
     private String nom;
 
@@ -48,9 +48,7 @@ public class Seance implements Iterable<Exercice>{
         }
         if (other instanceof Seance) {
             Seance another = (Seance) other;
-            if (Objects.equals(another.getNom(), this.getNom()) && Objects.equals(another.iterator(), this.iterator())) {
-                return true;
-            }
+            return Objects.equals(another.getNom(), this.getNom()) && Objects.equals(another.iterator(), this.iterator());
         }
         return false;
     }
@@ -73,5 +71,14 @@ public class Seance implements Iterable<Exercice>{
             toString.append(exo);
         }
         return toString.toString();
+    }
+
+    @Override
+    public Seance clone() {
+        Seance clone = new Seance(this.nom);
+        for (Exercice exercice : this) {
+            clone.addExercice(exercice.clone());
+        }
+        return clone;
     }
 }

@@ -5,7 +5,8 @@ import androidx.annotation.NonNull;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Planning {
+public class Planning implements Cloneable{
+
     public enum Jour {
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
 
@@ -56,5 +57,13 @@ public class Planning {
         return toString.toString();
     }
 
+    @Override
+    public Planning clone() {
+        Planning clone = new Planning(this.nom);
+        for (Map.Entry<Jour, Seance> entry: this.plan.entrySet()) {
+            clone.setSeance(entry.getKey(), entry.getValue().clone());
+        }
+        return clone;
+    }
 }
 

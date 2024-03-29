@@ -13,6 +13,7 @@ import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class DatabaseManager {
     private static final String TAG = DatabaseManager.class.getSimpleName();
@@ -81,8 +82,8 @@ public class DatabaseManager {
 
         List<Planning> plannings = new LinkedList<>();
         Planning planning;
-        while (!cursor.isLast()) {
-            cursor.moveToNext();
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
             planning  = new Planning(cursor.getString(cursor.getColumnIndex(DatabaseHelper.PLANNING_NOM)));
 
 
@@ -95,8 +96,9 @@ public class DatabaseManager {
 
 
             plannings.add(planning);
+            cursor.moveToNext();
         }
-        Log.v(TAG, "PLANNING : "+System.lineSeparator() + plannings.get(0).toString());
+        Log.v(TAG, "PLANNING : "+System.lineSeparator() + plannings);
         cursor.close();
         return plannings;
     }
@@ -132,6 +134,51 @@ public class DatabaseManager {
         }
         cursor.close();
         return exercices;
+    }
+    @SuppressLint("Range")
+    public void updatePlanning(Planning old, Planning planning) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DatabaseHelper.PLANNING_NOM, planning.getNom());
+        Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING +" WHERE " +DatabaseHelper.PLANNING_NOM + " = ?",new String[]{old.getNom()});
+        cursor.moveToFirst();
+        for (Planning.Jour jour : Planning.Jour.values()) {
+            if (!Objects.equals(old.getSeance(jour), planning.getSeance(jour))) {
+                database.execSQL("UPDATE " + DatabaseHelper.TABLE_PLANNING +" SET " + jour.name().toLowerCase() +" = null");
+                Seance seanceDuJour = planning.getSeance(jour);
+                if (seanceDuJour != null ) {
+                    long idSeance = insertSeance(seanceDuJour);
+                    contentValues.put(jour.name().toLowerCase(), idSeance);
+                }
+
+                int idSeanceDuOld = cursor.getInt(cursor.getColumnIndex(jour.name().toLowerCase()));
+                if (!cursor.isNull(cursor.getColumnIndex(jour.name().toLowerCase()))) {
+                    deleteSeance(idSeanceDuOld);
+                }
+            }
+
+        }
+        cursor.close();
+        String whereClause = DatabaseHelper.PLANNING_NOM + " = ?";
+        String[] args = new String[] {old.getNom()};
+        database.update(DatabaseHelper.TABLE_PLANNING, contentValues,whereClause, args);
+    }
+
+    public void deletePlanning(Planning planning) {
+        Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING +" WHERE " +DatabaseHelper.PLANNING_NOM + " = ?",new String[]{planning.getNom()});
+        cursor.moveToFirst();
+        database.delete(DatabaseHelper.TABLE_PLANNING,DatabaseHelper.PLANNING_NOM + " = ?", new String[]{planning.getNom()});
+        for (Planning.Jour jour : Planning.Jour.values()) {
+            int idSeanceDuJour = cursor.getInt(cursor.getColumnIndexOrThrow(jour.name().toLowerCase()));
+            if (!cursor.isNull(cursor.getColumnIndexOrThrow(jour.name().toLowerCase()))) {
+                deleteSeance(idSeanceDuJour);
+            }
+        }
+        cursor.close();
+    }
+
+    private void deleteSeance(int idSeanceDuJour) {
+        database.delete(DatabaseHelper.TABLE_COMPOSITION, DatabaseHelper.COMPOSITION_ID_SEANCE+" = ?", new String[]{""+idSeanceDuJour});
+        database.delete(DatabaseHelper.TABLE_SEANCE,DatabaseHelper.SEANCE_ID+" = ?", new String[]{""+idSeanceDuJour});
     }
 
     public void emptyDatabase() {

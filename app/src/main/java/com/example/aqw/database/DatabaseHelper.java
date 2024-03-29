@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String COMPOSITION_ID = "id";
     static final String COMPOSITION_ID_SEANCE = "id_seance";
     static final String COMPOSITION_NOM_EXERCICE = "nom_exercice";
-    static final String COMPOSITION_NOMBRE_SERIES = "nombre_series";;
+    static final String COMPOSITION_NOMBRE_SERIES = "nombre_series";
     static final String COMPOSITION_NOMBRE_REPETITIONS = "nombre_repetitions";
 
     static final String CREATE_TABLE_PLANNING_QUERY = "CREATE TABLE planning (" +
@@ -63,7 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  nom_exercice VARCHAR(25)," +
             "  nombre_series INTEGER," +
             "  nombre_repetitions INTEGER," +
-            "  FOREIGN KEY(id_seance) REFERENCES seance(id)" +
+            "  FOREIGN KEY(id_seance) REFERENCES seance(id) ON DELETE CASCADE" +
             ");";
     static final String DROP_TABLE_PLANNING_QUERY = "DROP TABLE IF EXISTS planning;";
     static final String DROP_TABLE_SELECTION_QUERY = "DROP TABLE IF EXISTS selection;";
@@ -87,5 +87,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(DROP_TABLE_SELECTION_QUERY);
         db.execSQL(DROP_TABLE_PLANNING_QUERY);
         db.execSQL(DROP_TABLE_SEANCE_QUERY);
+    }
+
+    @Override
+    public void onOpen(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys = ON;");
     }
 }

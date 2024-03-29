@@ -2,12 +2,12 @@ package com.example.aqw.modele;
 
 import java.util.Objects;
 
-public class Exercice {
+public class Exercice implements Cloneable {
     private String nom;
     private int nbSeries;
     private int nbRepetitions;
 
-    public Exercice(String nom, int nbSeries, int nbRepetitions) {
+    public Exercice(String nom, int nbSeries, int nbRepetitions){
         this.nom = nom;
         this.nbSeries = nbSeries;
         this.nbRepetitions = nbRepetitions;
@@ -45,14 +45,21 @@ public class Exercice {
         }
         if (other instanceof Exercice) {
             Exercice another = (Exercice) other;
-            if (Objects.equals(another.getNom(), this.getNom())) {
-                return true;
-            }
+            return Objects.equals(another.getNom(), this.getNom());
         }
         return false;
     }
     @Override
     public String toString() {
         return getNom() + " " + getNbSeries() + "x" + getNbRepetitions();
+    }
+
+    @Override
+    public Exercice clone() {
+        try {
+            return (Exercice) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
     }
 }
