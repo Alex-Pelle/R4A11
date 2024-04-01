@@ -13,19 +13,27 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aqw.R;
+import com.example.aqw.database.DatabaseManager;
 
 import java.util.ArrayList;
 
 public class RadioBoutonAdapter extends ArrayAdapter<String> {
+    private static final String TAG = RadioBoutonAdapter.class.getSimpleName();
+
+    private DatabaseManager dbManager;
 
     private ArrayList<String> plannings;
     private LayoutInflater layout;
     private int selectedPosition = -1;
 
-    public RadioBoutonAdapter(Context context, int ressource , ArrayList<String> plannings) {
+    public RadioBoutonAdapter(Context context, int ressource , ArrayList<String> plannings, DatabaseManager dbManager) {
         super(context,ressource,plannings);
         this.plannings=plannings;
         this.layout = LayoutInflater.from(context);
+        this.dbManager = dbManager;
+        if (dbManager.getChoix() != null) {
+            selectedPosition = plannings.indexOf(dbManager.getChoix().getNom());
+        }
     }
 
     @Override
@@ -50,6 +58,8 @@ public class RadioBoutonAdapter extends ArrayAdapter<String> {
             public void onClick(View v) {
                 if (selectedPosition!=position) {
                     selectedPosition = position;
+                    dbManager.choisirPlanning(dbManager.fetchPlanning(plannings.get(position)));
+                    Log.v(TAG, dbManager.getChoix().toString());
                 } else {
                     selectedPosition=-1;
                 }
