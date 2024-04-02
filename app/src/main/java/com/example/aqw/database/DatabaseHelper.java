@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String COMPOSITION_NOM_EXERCICE = "nom_exercice";
     static final String COMPOSITION_NOMBRE_SERIES = "nombre_series";
     static final String COMPOSITION_NOMBRE_REPETITIONS = "nombre_repetitions";
+    static final String COMPOSITION_NOTES = "notes";
 
     static final String CREATE_TABLE_PLANNING_QUERY = "CREATE TABLE planning (" +
             "  nom VARCHAR(25) PRIMARY KEY," +
@@ -63,6 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  nom_exercice VARCHAR(25)," +
             "  nombre_series INTEGER," +
             "  nombre_repetitions INTEGER," +
+            "  notes TEXT," +
             "  FOREIGN KEY(id_seance) REFERENCES seance(id) ON DELETE CASCADE" +
             ");";
     static final String DROP_TABLE_PLANNING_QUERY = "DROP TABLE IF EXISTS planning;";

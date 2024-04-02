@@ -7,29 +7,30 @@ import com.example.aqw.modele.Seance;
 public class Seeder {
     public void seed(DatabaseManager manager) {
         manager.emptyDatabase();
-        Exercice bench5x5 = new Exercice("Développé couché",5,5);
-        Exercice ohp3x8 = new Exercice("Développé militaire",3,8);
-        Exercice el3x12 = new Exercice("Élévations latérales",3,12);
-        Exercice extensionsTriceps = new Exercice("Extensions triceps corde",3,10);
+        String notes = "";
+        Exercice bench5x5 = new Exercice("Développé couché",5,5, notes);
+        Exercice ohp3x8 = new Exercice("Développé militaire",3,8, notes);
+        Exercice el3x12 = new Exercice("Élévations latérales",3,12, notes);
+        Exercice extensionsTriceps = new Exercice("Extensions triceps corde",3,10, notes);
         Seance push = new Seance("Push");
         push.addExercice(bench5x5);
         push.addExercice(ohp3x8);
         push.addExercice(el3x12);
         push.addExercice(extensionsTriceps);
 
-        Exercice terre = new Exercice("Soulevé de terre",5,5);
-        Exercice tractions = new Exercice("Tractions",3,8);
-        Exercice rowing = new Exercice("Rowing Barre",3,12);
-        Exercice curls = new Exercice("Curls biceps",3,10);
+        Exercice terre = new Exercice("Soulevé de terre",5,5, notes);
+        Exercice tractions = new Exercice("Tractions",3,8, notes);
+        Exercice rowing = new Exercice("Rowing Barre",3,12, notes);
+        Exercice curls = new Exercice("Curls biceps",3,10, notes);
         Seance pull = new Seance("Pull");
         pull.addExercice(terre);
         pull.addExercice(tractions);
         pull.addExercice(rowing);
         pull.addExercice(curls);
 
-        Exercice squat = new Exercice("Squat", 1,3);
-        Exercice squatSeries = new Exercice("Squat",4,4);
-        Exercice rdl = new Exercice("RDL", 4,8);
+        Exercice squat = new Exercice("Squat", 1,3, "Top Set");
+        Exercice squatSeries = new Exercice("Squat",4,4, "Longue négative");
+        Exercice rdl = new Exercice("RDL", 4,8, notes);
         Seance legs = new Seance("Legs");
         legs.addExercice(squat);
         legs.addExercice(squatSeries);
@@ -52,6 +53,8 @@ public class Seeder {
         Planning ppl2 = ppl.clone();
         ppl2.setNom("Push pull legs");
 
-        manager.updatePlanning(ppl, ppl2);
+        manager.insertPlanning(ppl2);
+
+        manager.choisirPlanning(ppl);
     }
 }
