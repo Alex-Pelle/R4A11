@@ -1,8 +1,9 @@
 package com.example.aqw.modele;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Exercice implements Cloneable {
+public class Exercice implements Cloneable, Serializable {
     private String nom;
     private int nbSeries;
     private int nbRepetitions;

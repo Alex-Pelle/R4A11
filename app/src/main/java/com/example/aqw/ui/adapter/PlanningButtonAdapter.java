@@ -64,8 +64,8 @@ public class PlanningButtonAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.jour_item, parent, false);
             holder = new ViewHolder();
-            holder.button = convertView.findViewById(R.id.buttonAddSeance);
-            holder.button.setSeance(seances.get(position));
+            Button button = convertView.findViewById(R.id.buttonAddSeance);
+            holder.button = new SeanceCreationButton(context,button,seances.get(position));
             holder.textView = convertView.findViewById(R.id.jourDeLaSemaineSeanceText);
             convertView.setTag(holder);
         } else {
@@ -73,12 +73,12 @@ public class PlanningButtonAdapter extends BaseAdapter {
         }
         holder.textView.setText(seances.get(position).getNom());
         if (seances.get(position).getExercices().isEmpty()) {
-            holder.button.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_input_add), null, null, null);
+            holder.button.getButton().setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_input_add), null, null, null);
         } else {
-            holder.button.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_menu_edit), null, null, null);
+            holder.button.getButton().setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_menu_edit), null, null, null);
         }
 
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.button.getButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SeanceCreationActivity.class);

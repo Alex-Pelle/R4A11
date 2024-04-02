@@ -18,9 +18,8 @@ public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<String> {
     private ArrayList<String> exercices;
     private LayoutInflater layout;
     private Context context;
-    private Seance seance;
 
-    public ExerciseSelectionSeanceAdapter(Context context, int ressource , ArrayList<String> exercices,Seance seance) {
+    public ExerciseSelectionSeanceAdapter(Context context, int ressource , ArrayList<String> exercices) {
         super(context,ressource,exercices);
         this.context=context;
         this.exercices=exercices;
@@ -29,16 +28,15 @@ public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<String> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        SeanceCreationAdapter.ViewHolder holder;
+        ViewHolder holder;
 
         if (convertView == null) {
-            convertView = layout.inflate(R.layout.list_item, parent, false);
-            holder = new SeanceCreationAdapter.ViewHolder();
-            holder.button = convertView.findViewById(R.id.buttonCreation);
-            holder.textView = convertView.findViewById(R.id.textPageName);
+            convertView = layout.inflate(R.layout.exercise_item, parent, false);
+            holder = new ViewHolder();
+            holder.textView = convertView.findViewById(R.id.nomExo);
             convertView.setTag(holder);
         } else {
-            holder = (SeanceCreationAdapter.ViewHolder) convertView.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
 
         holder.textView.setText(exercices.get(position));
@@ -48,7 +46,6 @@ public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<String> {
 
 
     static class ViewHolder {
-        Button button;
         TextView textView;
     }
 }

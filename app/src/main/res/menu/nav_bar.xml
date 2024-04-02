@@ -20,6 +20,11 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:title="Chronomètre"
+        android:id="@+id/chrono"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:title="Quitter"
         android:id="@+id/quitter"/>
 </menu>
