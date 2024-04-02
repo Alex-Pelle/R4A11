@@ -3,6 +3,7 @@ package com.example.aqw.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -10,9 +11,13 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
+import com.example.aqw.database.DatabaseManager;
+import com.example.aqw.modele.Planning;
 import com.example.aqw.ui.adapter.RadioBoutonAdapter;
 
+import java.sql.SQLDataException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlanningsActivity extends AppCompatActivity {
 
@@ -34,27 +39,23 @@ public class PlanningsActivity extends AppCompatActivity {
         listView = findViewById(R.id.list);
         Button createPlanning = findViewById(R.id.buttonCreation);
 
+        DatabaseManager manager = new DatabaseManager(this);
+        try {
+            manager.open();
+        } catch (SQLDataException e) {
+            throw new RuntimeException(e);
+        }
         list = new ArrayList<>();
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
-        list.add("P1");
-        list.add("P2");
+        List<Planning> listPlannings = manager.fetchPlannings();
+        if (listPlannings != null) {
+            for (Planning planning : listPlannings) {
+                list.add(planning.getNom());
+            }
+        }
 
-        listView.setChoiceMode(listView.CHOICE_MODE_SINGLE);
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
-        adapter = new RadioBoutonAdapter(this,R.layout.planning_item,list);
+        adapter = new RadioBoutonAdapter(this,R.layout.planning_item,list, manager);
         listView.setAdapter(adapter);
 
         createPlanning.setOnClickListener(new View.OnClickListener() {
