@@ -1,12 +1,13 @@
 package com.example.aqw.modele;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
-public class Seance implements Iterable<Exercice>, Cloneable{
+public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
     private List<Exercice> exercices;
     private String nom;
 
@@ -14,6 +15,8 @@ public class Seance implements Iterable<Exercice>, Cloneable{
         this.nom = nom;
         this.exercices = new ArrayList<>();
     }
+
+    public List<Exercice> getExercices() {return this.exercices;}
 
     public void addExercice(Exercice exercice) {
         exercices.add(exercice);

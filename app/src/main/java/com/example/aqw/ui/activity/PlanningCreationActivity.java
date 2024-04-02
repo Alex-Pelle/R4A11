@@ -1,20 +1,31 @@
 package com.example.aqw.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
+import com.example.aqw.modele.Planning;
+import com.example.aqw.modele.Seance;
 import com.example.aqw.ui.adapter.PlanningButtonAdapter;
+import com.example.aqw.ui.adapter.SeanceCreationAdapter;
 
 import java.util.ArrayList;
 
 public class PlanningCreationActivity extends AppCompatActivity {
 
     ListView listView;
-    ArrayList<String> list;
+    ArrayList<Seance> seances;
     PlanningButtonAdapter adapter;
+    Planning planning;
+
+    static int CODE_REQUEST_SEANCE = 54321;
+
+    public static int getCodeRequestSeance() {return CODE_REQUEST_SEANCE;}
+
 
 
     @Override
@@ -22,20 +33,24 @@ public class PlanningCreationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_planning);
         listView = findViewById(R.id.list);
+        planning = new Planning("Sans Titre ");
+        seances = new ArrayList<>();
 
-        list = new ArrayList<>();
-        list.add("Lundi");
-        list.add("Mardi");
-        list.add("Mercredi");
-        list.add("Jeudi");
-        list.add("Vendredi");
-        list.add("Samedi");
-        list.add("Dimanche");
+        for(Planning.Jour jour : Planning.Jour.values()) {
+            planning.setSeance(jour,new Seance(jour.name()));
+            seances.add(planning.getSeance(jour));
+        }
 
         listView.setChoiceMode(listView.CHOICE_MODE_SINGLE);
 
-        adapter = new PlanningButtonAdapter(this,R.layout.jour_item,list);
+        Button enregistrer = findViewById(R.id.buttonEnregistrer);
+        Button annuler = findViewById(R.id.buttonAnnuler);
+
+
+
+        adapter = new PlanningButtonAdapter(this,seances);
         listView.setAdapter(adapter);
+
 
 
     }
