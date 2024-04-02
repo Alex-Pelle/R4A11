@@ -17,12 +17,12 @@
 
     <TextView
         android:id="@+id/jourDeLaSemaineSeanceText"
-        android:layout_width="71dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="28dp"
+        android:layout_width="70dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/buttonAddSeance"
         app:layout_constraintStart_toEndOf="@+id/buttonAddSeance"
         app:layout_constraintTop_toTopOf="@+id/buttonAddSeance"
-        app:layout_constraintVertical_bias="0.307" />
+        app:layout_constraintVertical_bias="0.514" />
 </androidx.constraintlayout.widget.ConstraintLayout>
