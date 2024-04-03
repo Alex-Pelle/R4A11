@@ -5,10 +5,12 @@ import static com.example.aqw.ui.activity.SeanceCreationActivity.REQUEST_EXERCIS
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,14 +20,22 @@ import com.example.aqw.modele.Exercice;
 import com.example.aqw.ui.adapter.ExerciseSelectionSeanceAdapter;
 import com.example.aqw.ui.adapter.PlanningButtonAdapter;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class ExercisesActivity extends AppCompatActivity {
 
+    private static final String TAG = ExercisesActivity.class.getSimpleName();
     ListView listView;
-    ArrayList<String> exercices;
+    Map<String,String> exercices;
     ApiManager apiManager;
+
+    ExecutorService executor = Executors.newSingleThreadExecutor();
 
 
     @Override
@@ -35,21 +45,29 @@ public class ExercisesActivity extends AppCompatActivity {
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);
 
-        exercices = (ArrayList<String>) apiManager.nomsExercices();
+
+        executor.submit(
+                () -> {
+                    Log.v(TAG, "fetch de l'api commence");
+                    try {
+                        exercices = apiManager.nomsExercices();
+                        Log.v(TAG, "fetch de l'api fini : " + System.lineSeparator() + exercices);
+                        ExerciseSelectionSeanceAdapter adapter = new ExerciseSelectionSeanceAdapter( ExercisesActivity.this,R.layout.exercise_item,exercices);
+                        runOnUiThread(() -> listView.setAdapter(adapter));
+
+                        listView.setOnItemClickListener( (adapterView, view, i, l) -> {
+                            Intent intent = new Intent(ExercisesActivity.this,ExerciseParameter.class);
+                            intent.putExtra("Nom",adapter.getItem(i).getKey());
+                            startActivityForResult(intent,REQUEST_EXERCISE_CODE);
+                        });
+                    } catch (IOException e) {
+                        runOnUiThread(() -> Toast.makeText(ExercisesActivity.this,"Erreur de connexion à l'api",Toast.LENGTH_SHORT).show());
+                    }
+                }
+        );
 
         listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
-       if(getIntent().getBooleanExtra("adapter",true)) {
-           listView.setAdapter(new ExerciseSelectionSeanceAdapter( this,R.layout.exercise_item,exercices));
-           listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-               @Override
-               public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                   Intent intent = new Intent(ExercisesActivity.this,ExerciseParameter.class);
-                   intent.putExtra("Nom",exercices.get(i));
-                   startActivityForResult(intent,REQUEST_EXERCISE_CODE);
-               }
-           });
-       }
 
 
     }

@@ -6,7 +6,9 @@ import com.google.gson.JsonElement;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -19,29 +21,36 @@ public class ApiManager {
     private ExerciceAPIService service;
     private ExecutorService executorService;
 
+
     public ApiManager() {
         executorService = Executors.newCachedThreadPool();
         Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("https://work-out-api1.p.rapidapi.com").build();
         service = retrofit.create(ExerciceAPIService.class);
     }
 
-    public List<String> nomsExercices() {
-        List<String> output = new ArrayList<>();
+    public Map<String, String> nomsExercices() throws IOException {
+        Map<String, String> output = new HashMap<>();
         executorService.submit(() -> {
             try {
                 for (JsonElement x : service.allExercices().execute().body().getAsJsonArray()) {
-                    output.add(x.getAsJsonObject().get("WorkOut").getAsString());
+                    output.put(x.getAsJsonObject().get("WorkOut").getAsString(),
+                            x.getAsJsonObject().get("Muscles").getAsString());
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
+        executorService.shutdown();
         try {
-            executorService.awaitTermination(10, TimeUnit.SECONDS);
+            if (!executorService.awaitTermination(1, TimeUnit.MINUTES)) {
+                Log.v(TAG,"Timeout");
+                throw new IOException("Connexion à l'api timeout");
+            }
+            Log.v(TAG,"OK");
         } catch (InterruptedException e) {
+            Log.v(TAG,"Erreur");
             throw new RuntimeException(e);
         }
-        Log.v(TAG,output.toString());
         return output;
 
     }
