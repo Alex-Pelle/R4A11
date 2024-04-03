@@ -1,5 +1,8 @@
 package com.example.aqw.ui.adapter;
 
+import static com.example.aqw.ui.activity.SeanceCreationActivity.REQUEST_EXERCISE_CODE;
+
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -14,7 +17,9 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 
 import com.example.aqw.R;
+import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Seance;
+import com.example.aqw.ui.activity.ExerciseParameter;
 import com.example.aqw.ui.activity.PlanningCreationActivity;
 import com.example.aqw.ui.activity.PlanningsActivity;
 import com.example.aqw.ui.activity.SeanceCreationActivity;
@@ -23,30 +28,30 @@ import java.util.ArrayList;
 
 public class SeanceCreationAdapter extends BaseAdapter {
 
-    private ArrayList<String> exercices;
+    private ArrayList<Exercice> exercices;
     private LayoutInflater layout;
-    private Context context;
+    private Activity activity;
 
-    public SeanceCreationAdapter(Context context, int ressource , ArrayList<String> exercices,Seance seance) {
+    public SeanceCreationAdapter(Activity activity, ArrayList<Exercice> exercices) {
         super();
-        this.context=context;
+        this.activity=activity;
         this.exercices=exercices;
-        this.layout = LayoutInflater.from(context);
+        this.layout = LayoutInflater.from(activity);
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return exercices.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return exercices.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -54,23 +59,43 @@ public class SeanceCreationAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+            convertView = LayoutInflater.from(activity).inflate(R.layout.list_item, parent, false);
             holder = new ViewHolder();
-            holder.button = convertView.findViewById(R.id.buttonCreation);
-            holder.textView = convertView.findViewById(R.id.textPageName);
+            holder.delete = convertView.findViewById(R.id.deleteItem);
+            holder.edit = convertView.findViewById(R.id.editItem);
+            holder.textView = convertView.findViewById(R.id.itemName);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.textView.setText(exercices.get(position));
+        holder.textView.setText(exercices.get(position).getNom());
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exercices.remove(exercices.get(position));
+                notifyDataSetChanged();
+            }
+        });
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, ExerciseParameter.class);
+                Log.v("seancecreation",exercices.get(position).toString());
+                intent.putExtra("Exercice",exercices.get(position));
+                intent.putExtra("Position",position);
+                activity.startActivityForResult(intent,REQUEST_EXERCISE_CODE);
+            }
+        });
 
         return convertView;
     }
 
 
     static class ViewHolder {
-        Button button;
+        Button delete;
+        Button edit;
         TextView textView;
     }
 }

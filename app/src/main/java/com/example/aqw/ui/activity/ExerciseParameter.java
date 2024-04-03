@@ -2,6 +2,7 @@ package com.example.aqw.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,19 +39,43 @@ public class ExerciseParameter  extends AppCompatActivity {
         repetitions = findViewById(R.id.repetitions);
         series = findViewById(R.id.series);
         notes = findViewById(R.id.notesSupplementaires);
-        nomExercice = getIntent().getStringExtra("nom");
+
+
+        int position = getIntent().getIntExtra("Position",-1);
+        Log.v("position", String.valueOf(position));
+        if (position!=-1) {
+            Exercice exerciceEdit = (Exercice) getIntent().getSerializableExtra("Exercice");
+            Log.v("exerciceparamter", exerciceEdit.toString());
+            nomExercice = exerciceEdit.getNom();
+
+            repetitions.setText(""+exerciceEdit.getNbRepetitions());
+            series.setText(""+exerciceEdit.getNbSeries());
+            notes.setText(exerciceEdit.getNotes());
+        } else {
+            nomExercice = getIntent().getStringExtra("Nom");
+        }
+
+        annuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         enregistrer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (repetitions.getText().length()>0 && series.getText().length()>0) {
+
                     Exercice retour = new Exercice(nomExercice,Integer.parseInt(String.valueOf(series.getText())),Integer.parseInt(String.valueOf(repetitions.getText())),notes.getText().toString());
                     Intent intentRetour = new Intent();
+                    intentRetour.putExtra("Position",position);
                     intentRetour.putExtra("exo",retour);
                     setResult(RESULT_OK,intentRetour);
+
                     finish();
                 } else {
-                    if (repetitions.getText().length()==0) {
+                    if (repetitions.getText().length()<=0) {
                         Toast.makeText(ExerciseParameter.this,"Le nombre de répétition est vide", Toast.LENGTH_SHORT);
                     } else {
                         Toast.makeText(ExerciseParameter.this,"Le nombre de séries est vide", Toast.LENGTH_SHORT);

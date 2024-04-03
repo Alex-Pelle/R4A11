@@ -7,6 +7,17 @@ public class Exercice implements Cloneable, Serializable {
     private String nom;
     private int nbSeries;
     private int nbRepetitions;
+
+    @Override
+    public String toString() {
+        return "Exercice{" +
+                "nom='" + nom + '\'' +
+                ", nbSeries=" + nbSeries +
+                ", nbRepetitions=" + nbRepetitions +
+                ", notes='" + notes + '\'' +
+                '}';
+    }
+
     private String notes;
 
     public Exercice(String nom, int nbSeries, int nbRepetitions, String notes){
@@ -51,10 +62,6 @@ public class Exercice implements Cloneable, Serializable {
             return Objects.equals(another.getNom(), this.getNom());
         }
         return false;
-    }
-    @Override
-    public String toString() {
-        return getNom() + " " + getNbSeries() + "x" + getNbRepetitions() +  (!getNotes().isEmpty() ? " ["+getNotes() + "]":"");
     }
 
     @Override

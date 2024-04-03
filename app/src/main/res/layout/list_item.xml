@@ -8,30 +8,33 @@
 
 
     <TextView
-        android:id="@+id/listItemTextView"
+        android:id="@+id/itemName"
         android:layout_width="240dp"
         android:layout_height="23dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/deleteItem"
         android:layout_width="58dp"
         android:layout_height="48dp"
         android:drawableStart="@android:drawable/ic_delete"
-        app:layout_constraintBottom_toBottomOf="@+id/listItemTextView"
-        app:layout_constraintStart_toEndOf="@+id/listItemTextView"
-        app:layout_constraintTop_toTopOf="@+id/listItemTextView" />
+        app:layout_constraintBottom_toBottomOf="@+id/itemName"
+        app:layout_constraintStart_toEndOf="@+id/itemName"
+        app:layout_constraintTop_toTopOf="@+id/itemName" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/editItem"
         android:layout_width="58dp"
         android:layout_height="48dp"
+        android:layout_marginStart="4dp"
         android:drawableStart="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toBottomOf="@+id/button3"
-        app:layout_constraintStart_toEndOf="@+id/button3"
-        app:layout_constraintTop_toTopOf="@+id/button3" />
+        app:layout_constraintBottom_toBottomOf="@+id/deleteItem"
+        app:layout_constraintStart_toEndOf="@+id/deleteItem"
+        app:layout_constraintTop_toTopOf="@+id/deleteItem"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

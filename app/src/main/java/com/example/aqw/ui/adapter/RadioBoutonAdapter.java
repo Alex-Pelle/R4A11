@@ -6,11 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aqw.R;
 import com.example.aqw.database.DatabaseManager;
@@ -44,7 +41,7 @@ public class RadioBoutonAdapter extends ArrayAdapter<String> {
             convertView = layout.inflate(R.layout.planning_item, parent, false);
             holder = new ViewHolder();
             holder.radioButton = convertView.findViewById(R.id.radioButtonItem);
-            holder.textView = convertView.findViewById(R.id.listItemTextView);
+            holder.textView = convertView.findViewById(R.id.itemName);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();

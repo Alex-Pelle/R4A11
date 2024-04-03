@@ -45,7 +45,6 @@ public class ExercisesActivity extends AppCompatActivity {
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);
 
-
         executor.submit(
                 () -> {
                     Log.v(TAG, "fetch de l'api commence");
@@ -78,8 +77,10 @@ public class ExercisesActivity extends AppCompatActivity {
         if (requestCode == REQUEST_EXERCISE_CODE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Exercice exercice = (Exercice) extras.get("exo");
+            int position = (Integer) extras.get("Position");
             Intent intentRetour = new Intent();
             intentRetour.putExtra("exo",exercice);
+            intentRetour.putExtra("Position",position);
             setResult(RESULT_OK,intentRetour);
             finish();
         }
