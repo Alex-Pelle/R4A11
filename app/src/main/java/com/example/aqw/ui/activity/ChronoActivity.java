@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,12 +19,14 @@ import java.util.concurrent.TimeUnit;
 
 public class ChronoActivity  extends AppCompatActivity {
 
+    private static final String TAG = ChronoActivity.class.getSimpleName();
     private int duration;
     private int elapsed;
     private ProgressBar progressBar;
     private Button bouton;
     private EditText minutes;
     private EditText secondes;
+    private TextView restant;
     private ScheduledExecutorService executor;
 
     @Override
@@ -38,14 +41,17 @@ public class ChronoActivity  extends AppCompatActivity {
         this.minutes = (EditText) findViewById(R.id.minutes);
         this.secondes = (EditText) findViewById(R.id.secondes);
 
+        this.restant = (TextView) findViewById(R.id.restant);
         this.duration = 0;
         this.elapsed = 0;
         executor = Executors.newScheduledThreadPool(1);
 
         Runnable increment = () -> {
-            progressBar.setProgress(elapsed);
+            runOnUiThread(()->progressBar.setProgress(elapsed));
             elapsed++;
-            Log.v("TEST",""+elapsed);
+            runOnUiThread(()->restant.setText(elapsed >= duration ?
+                    "0:00":
+                    format()));
         };
 
         executor.scheduleAtFixedRate(increment, 0, 1, TimeUnit.SECONDS);
@@ -84,4 +90,9 @@ public class ChronoActivity  extends AppCompatActivity {
         });
     }
 
+    private String format() {
+        int minutes = (duration-elapsed)/60;
+        int secondes = (duration - elapsed)%60;
+        return String.format("%d:%02d",minutes,secondes);
+    }
 }
