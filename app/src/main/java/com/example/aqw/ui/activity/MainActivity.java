@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(MainActivity.this, PlanningsActivity.class);
-                startActivity(intent); // Correction ici
+                startActivity(intent);
                 return true;
             }
         });
@@ -76,5 +76,8 @@ public class MainActivity extends AppCompatActivity {
 //récupère les plannings
         manager.fetchPlannings();
         manager.close();
+        
     }
+
+
 }
