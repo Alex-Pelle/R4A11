@@ -10,11 +10,20 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.aqw.R;
 import com.example.aqw.database.DatabaseManager;
+import com.example.aqw.modele.Exercice;
+import com.example.aqw.modele.Planning;
+import com.example.aqw.modele.Seance;
 
 import java.sql.SQLDataException;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,8 +93,24 @@ public class MainActivity extends AppCompatActivity {
         manager.seed();
         //récupère les plannings
         manager.fetchPlannings();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        Planning.Jour aujourdhui = Planning.Jour.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
+        Planning planning = manager.getChoix();
+        Seance seanceDuJour = planning.getSeance(aujourdhui);
+        if (seanceDuJour != null) {
+            Log.v(TAG, seanceDuJour.toString());
+            ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText(seanceDuJour.getNom());
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+            for (Exercice ex : seanceDuJour) {
+                adapter.add(ex.toString());
+            }
+            ((ListView) findViewById(R.id.list)).setAdapter(adapter);
+        }
+
+
         manager.close();
-        
     }
 
 

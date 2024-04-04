@@ -10,12 +10,7 @@ public class Exercice implements Cloneable, Serializable {
 
     @Override
     public String toString() {
-        return "Exercice{" +
-                "nom='" + nom + '\'' +
-                ", nbSeries=" + nbSeries +
-                ", nbRepetitions=" + nbRepetitions +
-                ", notes='" + notes + '\'' +
-                '}';
+        return getNom() + " " + getNbSeries() + "x" + getNbRepetitions() +  (!getNotes().isEmpty() ? " ["+getNotes() + "]":"");
     }
 
     private String notes;

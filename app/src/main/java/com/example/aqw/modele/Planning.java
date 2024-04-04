@@ -19,6 +19,27 @@ public class Planning implements Cloneable, Serializable {
         public String toString() {
             return this.name().charAt(0) + this.name().substring(1).toLowerCase();
         }
+
+        public static Jour valueOf(int nb) {
+            switch (nb) {
+                case 1:
+                    return DIMANCHE;
+                case 2:
+                    return LUNDI;
+                case 3:
+                    return MARDI;
+                case 4:
+                    return MERCREDI;
+                case 5:
+                    return JEUDI;
+                case 6:
+                    return VENDREDI;
+                case 7:
+                    return SAMEDI;
+                default:
+                    return null;
+            }
+        }
     }
     private Map<Jour, Seance> plan;
     private String nom;
