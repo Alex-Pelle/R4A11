@@ -85,7 +85,7 @@ public class SeanceCreationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SeanceCreationActivity.this, ExercisesActivity.class);
-                intent.putExtra("adapter",true);
+                intent.putExtra("selection",true);
                 startActivityForResult(intent,REQUEST_EXERCISE_CODE);
             }
         });
