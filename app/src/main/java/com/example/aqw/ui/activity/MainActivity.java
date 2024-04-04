@@ -83,16 +83,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         DatabaseManager manager = new DatabaseManager(this);
         try {
             manager.open();
         } catch (SQLDataException e) {
             throw new RuntimeException(e);
         }
-        //en théorie pas besoin de le faire à chaque lancement
-        manager.seed();
-        //récupère les plannings
-        manager.fetchPlannings();
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -111,7 +113,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         manager.close();
+        manager= null;
     }
+
+
 
 
 }
