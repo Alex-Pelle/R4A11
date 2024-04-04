@@ -23,8 +23,8 @@
     <include
         android:id="@+id/include2"
         layout="@layout/list_layout"
-        android:layout_width="413dp"
-        android:layout_height="460dp"
+        android:layout_width="411dp"
+        android:layout_height="568dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +34,11 @@
         layout="@layout/annuler_enregistrer"
         android:layout_width="409dp"
         android:layout_height="64dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

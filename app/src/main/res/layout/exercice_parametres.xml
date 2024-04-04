@@ -33,8 +33,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="413dp"
-        android:layout_height="394dp"
+        android:layout_width="412dp"
+        android:layout_height="546dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -44,7 +44,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/notesSupplementaires"
             android:layout_width="match_parent"
-            android:layout_height="359dp"
+            android:layout_height="488dp"
             android:hint="Notes supplémentaires" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,9 +53,10 @@
         layout="@layout/annuler_enregistrer"
         android:layout_width="409dp"
         android:layout_height="64dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

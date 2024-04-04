@@ -76,9 +76,9 @@ public class ExerciseParameter  extends AppCompatActivity {
                     finish();
                 } else {
                     if (repetitions.getText().length()<=0) {
-                        Toast.makeText(ExerciseParameter.this,"Le nombre de répétition est vide", Toast.LENGTH_SHORT);
+                        Toast.makeText(ExerciseParameter.this,"Le nombre de répétition est vide", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(ExerciseParameter.this,"Le nombre de séries est vide", Toast.LENGTH_SHORT);
+                        Toast.makeText(ExerciseParameter.this,"Le nombre de séries est vide", Toast.LENGTH_SHORT).show();
 
                     }
                 }

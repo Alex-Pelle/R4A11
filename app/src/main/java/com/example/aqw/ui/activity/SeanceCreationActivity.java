@@ -1,12 +1,15 @@
 package com.example.aqw.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,13 +35,14 @@ public class SeanceCreationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creation_seance);
-        Intent intent = getIntent();
-        if (intent != null) {
-            seance = (Seance) intent.getSerializableExtra("Seance");
-        }
+
+
+        seance = (Seance) getIntent().getSerializableExtra("seance");
+
+        Log.v("s", String.valueOf(seance));
         listView = findViewById(R.id.list);
         listView.setChoiceMode(listView.CHOICE_MODE_SINGLE);
-        adapter = new SeanceCreationAdapter(this, (ArrayList<Exercice>) seance.getExercices());
+        adapter = new SeanceCreationAdapter(SeanceCreationActivity.this, seance.getExercices());
         listView.setAdapter(adapter);
 
 
@@ -46,7 +50,32 @@ public class SeanceCreationActivity extends AppCompatActivity {
         Button button = findViewById(R.id.buttonCreation);
         nomPage.setText("Création de séance");
         button.setText("Ajouter un exercice");
+        Button enregistrer = findViewById(R.id.buttonEnregistrer);
+        Button annuler = findViewById(R.id.buttonAnnuler);
+        EditText nomSeance = findViewById(R.id.nomSeance);
 
+        annuler.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        enregistrer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if (seance.getExercices().isEmpty()) {
+                    Toast.makeText(SeanceCreationActivity.this,"La séance doit comporter au moins un exercice", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.v("SeanceCreation", seance.toString());
+                    Intent intentRetour = new Intent();
+                    intentRetour.putExtra("seance",seance);
+                    intentRetour.putExtra("position",getIntent().getIntExtra("position",-1));
+                    setResult(RESULT_OK,intentRetour);
+                    finish();
+                }
+            }
+        });
 
 
 
@@ -84,3 +113,11 @@ public class SeanceCreationActivity extends AppCompatActivity {
 
 
 }
+
+/*
+if (nomSeance.getText().length()<=0) {
+                    Toast.makeText(SeanceCreationActivity.this,"La séance doit avoir un nom", Toast.LENGTH_SHORT).show();
+                } else
+
+                 seance.setNom(String.valueOf(nomSeance.getText()));
+ */

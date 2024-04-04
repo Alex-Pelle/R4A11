@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
-    private List<Exercice> exercices;
+
+    private ArrayList<Exercice> exercices;
     private String nom;
 
     public Seance(String nom) {
@@ -16,7 +17,8 @@ public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
         this.exercices = new ArrayList<>();
     }
 
-    public List<Exercice> getExercices() {return this.exercices;}
+    public void setExercices(ArrayList<Exercice> exercices) {this.exercices=exercices;}
+    public ArrayList<Exercice> getExercices() {return this.exercices;}
 
     public void addExercice(Exercice exercice) {
         exercices.add(exercice);

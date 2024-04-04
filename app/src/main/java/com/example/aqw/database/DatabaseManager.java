@@ -9,6 +9,7 @@ import android.util.Log;
 
 import com.example.aqw.modele.*;
 
+import java.io.Serializable;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -189,6 +190,7 @@ public class DatabaseManager {
     }
 
     public void deletePlanning(Planning planning) {
+        database.delete(DatabaseHelper.TABLE_SELECTION, DatabaseHelper.SELECTION_NOM+" = ?", new String[]{planning.getNom()});
         Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING +" WHERE " +DatabaseHelper.PLANNING_NOM + " = ?",new String[]{planning.getNom()});
         cursor.moveToFirst();
         database.delete(DatabaseHelper.TABLE_PLANNING,DatabaseHelper.PLANNING_NOM + " = ?", new String[]{planning.getNom()});
@@ -213,6 +215,9 @@ public class DatabaseManager {
     }
 
     public Planning getChoix() {
+        if (fetchPlannings().isEmpty()) {
+            return null;
+        }
         String[] colonnes = new String[]{DatabaseHelper.PLANNING_NOM};
         String orderBy = DatabaseHelper.SELECTION_TIMESTAMPS + " desc";
         String limit = "1";

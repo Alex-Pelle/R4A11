@@ -20,25 +20,26 @@
     <include
         android:id="@+id/include5"
         layout="@layout/list_layout"
-        android:layout_width="408dp"
-        android:layout_height="347dp"
+        android:layout_width="412dp"
+        android:layout_height="457dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/nomSeance" />
 
     <include
         layout="@layout/annuler_enregistrer"
-        android:layout_width="415dp"
-        android:layout_height="77dp"
-        android:layout_marginTop="2dp"
+        android:layout_width="409dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include5" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/nomSeance"
         android:layout_width="365dp"
         android:layout_height="53dp"
         android:layout_marginTop="12dp"

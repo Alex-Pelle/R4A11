@@ -1,11 +1,15 @@
 package com.example.aqw.modele;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
-public class Planning implements Cloneable{
+public class Planning implements Cloneable, Serializable {
 
     public enum Jour {
         LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI, DIMANCHE;
@@ -28,6 +32,14 @@ public class Planning implements Cloneable{
         return nom;
     }
 
+    public boolean isPlanningSeancesEmpty() {
+        for (Seance s : plan.values()) {
+            if (s.getExercices().size()>0) {
+                return false;
+            }
+        }
+        return true;
+    }
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -66,6 +78,19 @@ public class Planning implements Cloneable{
             clone.setSeance(entry.getKey(), entry.getValue().clone());
         }
         return clone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Planning)) return false;
+        Planning planning = (Planning) o;
+        return toString().equals(planning.toString());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(plan, nom);
     }
 }
 

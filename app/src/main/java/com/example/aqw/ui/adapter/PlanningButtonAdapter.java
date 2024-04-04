@@ -1,8 +1,15 @@
 package com.example.aqw.ui.adapter;
 
+
+
+
+import static com.example.aqw.ui.activity.PlanningCreationActivity.CODE_REQUEST_SEANCE;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,32 +20,36 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.aqw.R;
 import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
-import com.example.aqw.ui.activity.PlanningCreationActivity;
 import com.example.aqw.ui.activity.SeanceCreationActivity;
 import com.example.aqw.ui.item.SeanceCreationButton;
 import com.google.android.material.button.MaterialButton;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PlanningButtonAdapter extends BaseAdapter {
 
-    private Context context;
+    private Activity activity;
+    private final PlanningButtonAdapter adapter = this;
     private ArrayList<Seance> seances;
 
-    private Context getContext() {
-        return this.context;
+    private Activity getActivity() {
+        return this.activity;
     }
 
-    public PlanningButtonAdapter(Context context, ArrayList<Seance> seances) {
+    public PlanningButtonAdapter(Activity activity, ArrayList<Seance> seances) {
         super();
-        this.context=context;
+        this.activity=activity;
         this.seances=seances;
     }
 
@@ -62,28 +73,30 @@ public class PlanningButtonAdapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.jour_item, parent, false);
+            convertView = LayoutInflater.from(activity).inflate(R.layout.jour_item, parent, false);
             holder = new ViewHolder();
-            Button button = convertView.findViewById(R.id.buttonAddSeance);
-            holder.button = new SeanceCreationButton(context,button,seances.get(position));
+            holder.button = convertView.findViewById(R.id.buttonAddSeance);
             holder.textView = convertView.findViewById(R.id.jourDeLaSemaineSeanceText);
             convertView.setTag(holder);
+            Log.v("ss", String.valueOf(seances.get(position)));
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.textView.setText(seances.get(position).getNom());
         if (seances.get(position).getExercices().isEmpty()) {
-            holder.button.getButton().setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_input_add), null, null, null);
+            holder.button.setCompoundDrawablesWithIntrinsicBounds(ActivityCompat.getDrawable(this.getActivity(), android.R.drawable.ic_input_add), null, null, null);
         } else {
-            holder.button.getButton().setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(this.getContext(), android.R.drawable.ic_menu_edit), null, null, null);
+            holder.button.setCompoundDrawablesWithIntrinsicBounds(ActivityCompat.getDrawable(this.getActivity(), android.R.drawable.ic_menu_edit), null, null, null);
         }
 
-        holder.button.getButton().setOnClickListener(new View.OnClickListener() {
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, SeanceCreationActivity.class);
-                intent.putExtra("Seance",holder.button.getSeance());
-                context.startActivity(intent);
+                Log.v("init seance", seances.get(position).toString());
+                Intent intent = new Intent(activity, SeanceCreationActivity.class);
+                intent.putExtra("seance",seances.get(position));
+                intent.putExtra("position",position);
+                activity.startActivityForResult(intent,CODE_REQUEST_SEANCE);
             }
         });
 
@@ -92,7 +105,7 @@ public class PlanningButtonAdapter extends BaseAdapter {
     }
 
     static class ViewHolder {
-        SeanceCreationButton button;
+        Button button;
         TextView textView;
     }
 }
