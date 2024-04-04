@@ -40,7 +40,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        apiManager = new ApiManager();
+        apiManager = ApiManager.getApiManager();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);
@@ -55,7 +55,14 @@ public class ExercisesActivity extends AppCompatActivity {
                         runOnUiThread(() -> listView.setAdapter(adapter));
 
                         listView.setOnItemClickListener( (adapterView, view, i, l) -> {
-                            Intent intent = new Intent(ExercisesActivity.this,ExerciseParameter.class);
+
+                            Intent intent = null;
+                            if (getIntent().getBooleanExtra("selection", true)) {
+                                intent = new Intent(ExercisesActivity.this,ExerciseParameter.class);
+                            }
+                            else {
+                                intent = new Intent(ExercisesActivity.this,DetailsExerciceActivity.class);
+                            }
                             intent.putExtra("Nom",adapter.getItem(i).getKey());
                             startActivityForResult(intent,REQUEST_EXERCISE_CODE);
                         });

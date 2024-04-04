@@ -189,6 +189,7 @@ public class DatabaseManager {
     }
 
     public void deletePlanning(Planning planning) {
+        database.delete(DatabaseHelper.TABLE_SELECTION, DatabaseHelper.SELECTION_NOM+" = ?", new String[]{planning.getNom()});
         Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING +" WHERE " +DatabaseHelper.PLANNING_NOM + " = ?",new String[]{planning.getNom()});
         cursor.moveToFirst();
         database.delete(DatabaseHelper.TABLE_PLANNING,DatabaseHelper.PLANNING_NOM + " = ?", new String[]{planning.getNom()});
