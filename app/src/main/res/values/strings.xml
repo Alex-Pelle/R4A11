@@ -36,6 +36,7 @@
     <string name="vendredi">Vendredi</string>
     <string name="samedi">Samedi</string>
     <string name="dimanche">Dimanche</string>
+    <string name="no_equipment">Besoin de rien\n(envie de toi)</string>
     <plurals name="exercice">
         <item quantity="one">exercice</item>
         <item quantity="other">exercices</item>

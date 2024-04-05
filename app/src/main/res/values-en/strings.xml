@@ -35,4 +35,5 @@
     <string name="vendredi">Friday</string>
     <string name="samedi">Saturday</string>
     <string name="dimanche">Sunday</string>
+    <string name="no_equipment">No equipment needed</string>
 </resources>

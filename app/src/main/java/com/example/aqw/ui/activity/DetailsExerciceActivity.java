@@ -24,7 +24,7 @@ public class DetailsExerciceActivity extends AppCompatActivity {
         setContentView(R.layout.exercices_details);
         executor.submit(() -> {
             try {
-                DetailExercice details = ApiManager.getApiManager().details(getIntent().getStringExtra("Nom"));
+                DetailExercice details = new ApiManager(this).details(getIntent().getStringExtra("Nom"));
 
                 Log.v(TAG,"Nom : "+details.getNom());
                 Log.v(TAG,"Intensity : "+details.getLevel());
