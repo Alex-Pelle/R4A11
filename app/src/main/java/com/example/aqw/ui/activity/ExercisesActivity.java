@@ -44,6 +44,7 @@ public class ExercisesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);
+        Toast.makeText(this, "Récuparations des exercices...", Toast.LENGTH_SHORT).show();
 
         executor.submit(
                 () -> {
@@ -53,6 +54,7 @@ public class ExercisesActivity extends AppCompatActivity {
                         Log.v(TAG, "fetch de l'api fini : " + System.lineSeparator() + exercices);
                         ExerciseSelectionSeanceAdapter adapter = new ExerciseSelectionSeanceAdapter( ExercisesActivity.this,R.layout.exercise_item,exercices);
                         runOnUiThread(() -> listView.setAdapter(adapter));
+                        runOnUiThread(() -> findViewById(R.id.loadingBar).setVisibility(View.GONE));
 
                         listView.setOnItemClickListener( (adapterView, view, i, l) -> {
 
