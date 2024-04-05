@@ -5,42 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
-        android:layout_width="311dp"
-        android:layout_height="151dp"
-        
+    <TextView
+        android:id="@+id/nombreExercicesPlanningVisualizer"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_marginTop="20dp"
+        android:text="Nombre d'exercices :"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/titreDeLaSeancePlanningVisualizer" />
 
+    <TextView
+        android:id="@+id/titreDeLaSeancePlanningVisualizer"
+        android:layout_width="411dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:text="Titre de la séance"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/jourDeLaSemainePlanningVisualizer" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="151dp"
-            android:orientation="vertical"
-            tools:ignore="UselessParent">
-
-            <TextView
-                android:id="@+id/jourDeLaSemainePlanningVisualizer"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="10dp"
-                android:text="Jour de la semaine"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/titreDeLaSeancePlanningVisualizer"
-                android:layout_width="match_parent"
-                android:layout_height="61dp"
-                android:text="Titre de la séance"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/nombreExercicesPlanningVisualizer"
-                android:layout_width="match_parent"
-                android:layout_height="33dp"
-                android:text="Nombre d'exercices :"
-                android:textAlignment="center" />
-        </LinearLayout>
-    </FrameLayout>
+    <TextView
+        android:id="@+id/jourDeLaSemainePlanningVisualizer"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Jour de la semaine"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

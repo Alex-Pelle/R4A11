@@ -5,6 +5,8 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aqw.R;
@@ -18,6 +20,7 @@ public class PlanningVisualizeActivity extends AppCompatActivity {
     private Planning planning;
     private ArrayList<Seance> seances;
     private RecyclerView planningVisualizer;
+    private LinearLayoutManager llm;
     private TextView planningNom;
     private PlanningVisualizeAdapter adapter;
     @Override
@@ -30,10 +33,13 @@ public class PlanningVisualizeActivity extends AppCompatActivity {
         planning = (Planning) getIntent().getSerializableExtra("plan");
         Log.v("aaaaaaaaaaaaaa", String.valueOf(planning!=null));
         if (planning!=null) {
+            llm = new LinearLayoutManager(this);
+            llm.setOrientation(LinearLayoutManager.HORIZONTAL);
             planningNom.setText(planning.getNom());
             seances = new ArrayList<>();
             seances.addAll(planning.getSeances());
             adapter = new PlanningVisualizeAdapter(this,planning,seances);
+            planningVisualizer.setLayoutManager(llm);
             planningVisualizer.setAdapter(adapter);
         }
 
