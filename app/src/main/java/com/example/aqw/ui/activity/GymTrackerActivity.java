@@ -19,7 +19,7 @@ public abstract class GymTrackerActivity extends AppCompatActivity {
         MenuItem quit = menu.getItem(3);
 
         quit.setOnMenuItemClickListener((MenuItem item) -> {
-                System.exit(0);
+                this.finishAffinity();
                 return true;
             });
 
