@@ -1,7 +1,9 @@
 package com.example.aqw.api;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.example.aqw.R;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -19,15 +21,10 @@ public class ApiManager {
     private static final String TAG = ApiManager.class.getSimpleName();
     private ExerciceAPIService service;
     private ExecutorService executorService;
+    private Context context;
 
-    private static ApiManager instance;
-    public static synchronized ApiManager getApiManager() {
-        if (instance == null ) {
-            instance = new ApiManager();
-        }
-        return instance;
-    }
-    private ApiManager() {
+    public ApiManager(Context context) {
+        this.context = context;
         executorService = Executors.newSingleThreadExecutor();
         Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl("https://work-out-api1.p.rapidapi.com/").build();
         service = retrofit.create(ExerciceAPIService.class);
@@ -52,6 +49,7 @@ public class ApiManager {
         }
         Response<JsonElement> reponse = service.exercice(exercice).execute();
         DetailExercice details = new DetailExercice();
+        Log.v(TAG, reponse.toString());
         for(JsonElement elt : reponse.body().getAsJsonArray()) {
             JsonObject x = elt.getAsJsonObject();
             if (x.get("WorkOut").getAsString().equalsIgnoreCase(exercice)) {
@@ -59,7 +57,12 @@ public class ApiManager {
                 details.setNom(x.get("WorkOut").getAsString());
                 details.setMuscles(x.get("Muscles").getAsString());
                 details.setLevel(x.get("Intensity_Level").getAsString());
-                details.setEquipment(x.get("Equipment").getAsString());
+                if (!x.get("Equipment").isJsonNull()) {
+                    details.setEquipment(x.get("Equipment").getAsString());
+                }
+                else {
+                    details.setEquipment(context.getText(R.string.no_equipment).toString());
+                }
                 details.setBeginnerSets(x.get("Beginner Sets").getAsString());
                 details.setIntermediateSets(x.get("Intermediate Sets").getAsString());
                 details.setExpertSets(x.get("Expert Sets").getAsString());

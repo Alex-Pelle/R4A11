@@ -65,7 +65,7 @@ public class SeanceCreationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                  if (seance.getExercices().isEmpty()) {
-                    Toast.makeText(SeanceCreationActivity.this,"La séance doit comporter au moins un exercice", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SeanceCreationActivity.this,getString(R.string.erreur_exercice), Toast.LENGTH_SHORT).show();
                 } else {
                     Log.v("SeanceCreation", seance.toString());
                     if(nomSeance.getText().toString().trim().isEmpty()) {
@@ -118,11 +118,3 @@ public class SeanceCreationActivity extends AppCompatActivity {
 
 
 }
-
-/*
-if (nomSeance.getText().length()<=0) {
-                    Toast.makeText(SeanceCreationActivity.this,"La séance doit avoir un nom", Toast.LENGTH_SHORT).show();
-                } else
-
-                 seance.setNom(String.valueOf(nomSeance.getText()));
- */

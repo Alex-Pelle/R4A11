@@ -5,16 +5,26 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Plannings"
+        android:title="@string/accueil"
+        android:id="@+id/accueil"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/plannings"
         android:id="@+id/plannings"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Chronomètre"
+        android:title="@string/exercices"
+        android:id="@+id/exercices"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="@string/chronom_tre"
         android:id="@+id/chrono"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Quitter"
+        android:title="@string/quitter"
         android:id="@+id/quitter"/>
 </menu>

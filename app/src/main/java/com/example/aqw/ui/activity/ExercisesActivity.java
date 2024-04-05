@@ -40,7 +40,7 @@ public class ExercisesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        apiManager = ApiManager.getApiManager();
+        apiManager = new ApiManager(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);

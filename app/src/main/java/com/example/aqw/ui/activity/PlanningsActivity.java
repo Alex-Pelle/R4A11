@@ -40,12 +40,11 @@ public class PlanningsActivity extends AppCompatActivity {
         setContentView(R.layout.list_with_add_button_layout);
 
         TextView nomPage = findViewById(R.id.textPageName);
-        Button button = findViewById(R.id.buttonCreation);
-        nomPage.setText("Plannings");
-        button.setText("Nouveau");
+        Button createPlanning = findViewById(R.id.buttonCreation);
+        nomPage.setText(R.string.plannings);
+        createPlanning.setText(R.string.nouveau);
 
         listView = findViewById(R.id.list);
-        Button createPlanning = findViewById(R.id.buttonCreation);
         planning = new ArrayList<>();
         DatabaseManager manager = new DatabaseManager(this);
         fillPlanningList(manager,planning);
