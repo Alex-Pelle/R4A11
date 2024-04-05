@@ -5,18 +5,8 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Accueil"
-        android:id="@+id/accueil"/>
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:title="Plannings"
         android:id="@+id/plannings"/>
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:title="Exercices"
-        android:id="@+id/exercices"/>
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

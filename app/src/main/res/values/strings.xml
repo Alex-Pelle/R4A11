@@ -36,6 +36,8 @@
     <string name="vendredi">Vendredi</string>
     <string name="samedi">Samedi</string>
     <string name="dimanche">Dimanche</string>
+    <string name="creatioSeanceText">text</string>
+    <string name="ajouter_un_exercice">Ajouter un Exercice</string>
     <plurals name="exercice">
         <item quantity="one">exercice</item>
         <item quantity="other">exercices</item>

@@ -10,7 +10,7 @@
         android:layout_width="250dp"
         android:layout_height="30dp"
         android:layout_marginEnd="8dp"
-        android:text=""
+        android:text="@string/creatioSeanceText"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -24,7 +24,7 @@
         android:layout_width="117dp"
         android:layout_height="53dp"
         android:layout_marginEnd="28dp"
-        android:text=""
+        android:text="@string/ajouter_un_exercice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

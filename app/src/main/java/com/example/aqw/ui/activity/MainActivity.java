@@ -31,11 +31,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.nav_bar,menu);
-        MenuItem accueil = menu.getItem(0);
-        MenuItem plannings = menu.getItem(1);
-        MenuItem exercices = menu.getItem(2);
-        MenuItem chrono = menu.getItem(3);
-        MenuItem quit = menu.getItem(4);
+        MenuItem plannings = menu.getItem(0);
+        MenuItem chrono = menu.getItem(1);
+        MenuItem quit = menu.getItem(2);
 
         quit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -51,15 +49,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-        exercices.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, ExercisesActivity.class);
-                intent.putExtra("selection",false);
-                startActivity(intent);
-                return true;
-            }
-        });
+
 
 
         plannings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
