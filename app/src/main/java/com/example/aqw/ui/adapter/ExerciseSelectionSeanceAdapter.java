@@ -1,6 +1,7 @@
 package com.example.aqw.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.aqw.R;
 import com.example.aqw.modele.Seance;
+import com.example.aqw.ui.activity.DetailsExerciceActivity;
 import com.example.aqw.ui.activity.ExercisesActivity;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<Map.Entry<Stri
     public View getView(int position, View convertView, ViewGroup parent) {final View result;
 
         if (convertView == null) {
-            result = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_item, parent, false);
+            result = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercice_item_details, parent, false);
         } else {
             result = convertView;
         }
@@ -43,6 +45,14 @@ public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<Map.Entry<Stri
 
         ((TextView) result.findViewById(R.id.nomExo)).setText(item.getKey());
         ((TextView) result.findViewById(R.id.muscle)).setText(item.getValue());
+        result.findViewById(R.id.getDetails).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailsExerciceActivity.class);
+                intent.putExtra("Nom",item.getKey());
+                context.startActivity(intent);
+            }
+        });
 
         return result;
     }
