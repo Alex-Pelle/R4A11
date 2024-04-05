@@ -11,4 +11,33 @@
     <string name="croissant">Croissant</string>
     <string name="erreur_api">Erreur de connexion à l\'api</string>
     <string name="connexion_api">Récuparations des exercices…</string>
+    <string name="exercice_titre">Exercices</string>
+    <string name="muscle_cible">Muscle ciblé</string>
+    <string name="equipement_requis">Equipement requis</string>
+    <string name="difficult_de_l_exercice">Difficulté de l\'exercice</string>
+    <string name="pratiquant_debutant">Pratiquant débutant</string>
+    <string name="pratiquant_intermediaire">Pratiquant intermédiaire</string>
+    <string name="pratiquant_confirme">Pratiquant confirme</string>
+    <string name="mise_en_place_simple">Mise en place simple</string>
+    <string name="mise_en_place_detaillee">Mise en place détaillée</string>
+    <string name="bienvenue_sur_gymtracker">Bienvenue sur GymTracker !</string>
+    <string name="seance_du_jour">Séance du jour :</string>
+    <string name="enregistrer">Enregistrer</string>
+    <string name="annuler">Annuler</string>
+    <string name="nom_du_planning">Nom du planning</string>
+    <string name="nom_de_la_seance">Nom de la séance</string>
+    <string name="series">Séries</string>
+    <string name="repetitions">Répétitions</string>
+    <string name="notes">Notes supplémentaires</string>
+    <string name="lundi">Lundi</string>
+    <string name="mardi">Mardi</string>
+    <string name="mercredi">Mercredi</string>
+    <string name="jeudi">Jeudi</string>
+    <string name="vendredi">Vendredi</string>
+    <string name="samedi">Samedi</string>
+    <string name="dimanche">Dimanche</string>
+    <plurals name="exercice">
+        <item quantity="one">exercice</item>
+        <item quantity="other">exercices</item>
+    </plurals>
 </resources>

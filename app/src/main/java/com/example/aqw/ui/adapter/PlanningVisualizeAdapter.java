@@ -25,6 +25,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     private ArrayList<Seance> seances;
     private Planning planning;
     private OnItemClickListener listener;
+    private Context context;
 
     private static LayoutInflater inflater = null;
 
@@ -73,17 +74,18 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.v("bind","bite");
         holder.onClickListener(seances.get(position),listener);
-        holder.jourSemaine.setText(this.planning.getJour(seances.get(position)).toString());
+        holder.jourSemaine.setText(this.planning.getJour(seances.get(position)).toString(context));
         holder.nomSeance.setText(seances.get(position).getNom());
-        holder.nbExercices.setText("Nombre d'exercices : "+seances.get(position).countExercices());
+        holder.nbExercices.setText(context.getResources().getQuantityString(R.plurals.exercice, seances.get(position).countExercices(), seances.get(position).countExercices()));
     }
 
 
     public PlanningVisualizeAdapter(Context context, Planning planning, ArrayList<Seance> seances, OnItemClickListener listener) {
         Log.v("planning","bite");
-        this.planning=planning;
-        this.seances=seances;
-        this.listener=listener;
+        this.planning = planning;
+        this.seances = seances;
+        this.listener = listener;
+        this.context = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

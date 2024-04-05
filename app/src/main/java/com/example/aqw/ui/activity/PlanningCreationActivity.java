@@ -51,7 +51,7 @@ public class PlanningCreationActivity extends AppCompatActivity {
             seances = new ArrayList<>();
 
             for(Planning.Jour jour : Planning.Jour.values()) {
-                planning.setSeance(jour,new Seance(jour.name()));
+                planning.setSeance(jour,new Seance(jour.toString(this)));
                 seances.add(planning.getSeance(jour));
             }
         } else {

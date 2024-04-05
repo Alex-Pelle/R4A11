@@ -25,10 +25,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="23dp"
+                android:textSize="23sp"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:text="'Nom Exercice'" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleMuscleCible"
@@ -36,16 +36,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:textAlignment="center"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Muscle ciblé" />
+                android:text="@string/muscle_cible" />
 
             <TextView
                 android:id="@+id/descDataMuscleCible"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleEquipement"
@@ -55,14 +55,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Equipement requis" />
+                android:text="@string/equipement_requis" />
 
             <TextView
                 android:id="@+id/descDataEquipement"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleDifficulte"
@@ -72,14 +72,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Difficulté de l'exercice" />
+                android:text="@string/difficult_de_l_exercice" />
 
             <TextView
                 android:id="@+id/descDataDifficulte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleDebutant"
@@ -89,14 +89,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text=" Pratiquant débutant" />
+                android:text="@string/pratiquant_debutant" />
 
             <TextView
                 android:id="@+id/descDataDebutant"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleIntermediaire"
@@ -106,14 +106,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text=" Pratiquant intermédiaire" />
+                android:text="@string/pratiquant_intermediaire" />
 
             <TextView
                 android:id="@+id/descDataIntermediaire"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleConfirme"
@@ -123,14 +123,14 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:text=" Pratiquant confirmé" />
+                android:text="@string/pratiquant_confirme" />
 
             <TextView
                 android:id="@+id/descDataConfirme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleMiseEnPlaceSimple"
@@ -138,16 +138,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:textAlignment="center"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Mise en place simple" />
+                android:text="@string/mise_en_place_simple" />
 
             <TextView
                 android:id="@+id/descDataMiseEnPlaceSimple"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="data" />
+                android:text="" />
 
             <TextView
                 android:id="@+id/descTitleMiseEnPlaceDetaillee"
@@ -155,9 +155,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:textAlignment="center"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:text="Mise en place détaillée" />
+                android:text="@string/mise_en_place_detaillee" />
 
             <TextView
                 android:id="@+id/descDataMiseEnPlaceDetaillee"
@@ -165,7 +165,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="15dp"
-                android:text="data" />
+                android:text="" />
 
 
         </LinearLayout>

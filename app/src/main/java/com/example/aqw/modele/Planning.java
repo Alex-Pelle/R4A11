@@ -1,9 +1,12 @@
 package com.example.aqw.modele;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.aqw.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +25,26 @@ public class Planning implements Cloneable, Serializable {
         @Override
         public String toString() {
             return this.name().charAt(0) + this.name().substring(1).toLowerCase();
+        }
+
+        public String toString(Context context) {
+            switch (this) {
+                case LUNDI:
+                    return context.getString(R.string.lundi);
+                case MARDI:
+                    return context.getString(R.string.mardi);
+                case MERCREDI:
+                    return context.getString(R.string.mercredi);
+                case JEUDI:
+                    return context.getString(R.string.jeudi);
+                case VENDREDI:
+                    return context.getString(R.string.vendredi);
+                case SAMEDI:
+                    return context.getString(R.string.samedi);
+                case DIMANCHE:
+                    return context.getString(R.string.dimanche);
+            }
+            return "";
         }
 
         public static Jour valueOf(int nb) {
@@ -69,8 +92,14 @@ public class Planning implements Cloneable, Serializable {
     }
 
 
-    public Collection<Seance> getSeances() {
-        return plan.values();
+    public ArrayList<Seance> getSeances() {
+        ArrayList<Seance> s = new ArrayList<>();
+        for (Jour jour : Jour.values()) {
+            if (plan.get(jour) != null) {
+                s.add(plan.get(jour));
+            }
+        }
+        return s;
     }
 
     public void setNom(String nom) {
