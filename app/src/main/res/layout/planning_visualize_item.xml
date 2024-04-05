@@ -2,40 +2,52 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="350dp"
+    android:layout_height="170dp"
+    android:background="@android:color/darker_gray"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="30dp"
+    tools:ignore="MissingDefaultResource">
 
     <TextView
         android:id="@+id/nombreExercicesPlanningVisualizer"
-        android:layout_width="match_parent"
-        android:layout_height="33dp"
+        android:layout_width="349dp"
+        android:layout_height="34dp"
         android:layout_marginTop="20dp"
         android:text="Nombre d'exercices :"
+        android:textSize="20sp"
+
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titreDeLaSeancePlanningVisualizer" />
+        app:layout_constraintTop_toBottomOf="@+id/titreDeLaSeancePlanningVisualizer"
+        app:drawableBottomCompat="@android:color/black" />
 
     <TextView
         android:id="@+id/titreDeLaSeancePlanningVisualizer"
-        android:layout_width="411dp"
-        android:layout_height="36dp"
+        android:layout_width="354dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:text="Titre de la séance"
+        android:textSize="20sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/jourDeLaSemainePlanningVisualizer" />
+        app:layout_constraintTop_toBottomOf="@+id/jourDeLaSemainePlanningVisualizer"
+        app:drawableBottomCompat="@android:color/black" />
 
     <TextView
         android:id="@+id/jourDeLaSemainePlanningVisualizer"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_marginTop="4dp"
         android:text="Jour de la semaine"
         android:textAlignment="center"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

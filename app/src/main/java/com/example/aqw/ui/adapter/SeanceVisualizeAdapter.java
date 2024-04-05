@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,43 +14,43 @@ import com.example.aqw.R;
 import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
-import com.example.aqw.ui.activity.SeanceVisualizeActivity;
 
 import java.util.ArrayList;
 import java.util.ArrayList;
 
-public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisualizeAdapter.ViewHolder> {
+public class SeanceVisualizeAdapter extends RecyclerView.Adapter<SeanceVisualizeAdapter.ViewHolder> {
 
-    private ArrayList<Seance> seances;
-    private Planning planning;
+    private ArrayList<Exercice> exercices;
     private OnItemClickListener listener;
 
     private static LayoutInflater inflater = null;
 
     public interface OnItemClickListener {
-        void onItemClick(Seance item);
+        void onItemClick(Exercice item);
     }
 
-
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView jourSemaine;
-        TextView nomSeance;
-        TextView nbExercices;
+        TextView nomExercice;
+        TextView nbSeries;
+        TextView nbReps;
+        TextView notes;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             Log.v("viewholder","bite");
-            this.jourSemaine = itemView.findViewById(R.id.jourDeLaSemainePlanningVisualizer);
-            this.nomSeance = itemView.findViewById(R.id.titreDeLaSeancePlanningVisualizer);
-            this.nbExercices = itemView.findViewById(R.id.nombreExercicesPlanningVisualizer);
+            this.nomExercice = itemView.findViewById(R.id.exerciceNomSeanceVisualizer);
+            this.nbSeries = itemView.findViewById(R.id.nbSeriesSeanceVisualizer);
+            this.nbReps = itemView.findViewById(R.id.nbRepetitionsSeanceVisualizer);
+            this.notes = itemView.findViewById(R.id.notesSeanceVisualizer);
         }
 
-        public void onClickListener(final Seance seance, final OnItemClickListener listener) {
+        public void onClickListener(final Exercice exercice, final OnItemClickListener listener) {
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(seance);
+                    listener.onItemClick(exercice);
                 }
             });
         }
@@ -63,7 +62,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Log.v("onCreateView","bite");
-        View view = inflater.inflate(R.layout.planning_visualize_item,parent,false);
+        View view = inflater.inflate(R.layout.seance_visualizer_item,parent,false);
         ViewHolder v = new ViewHolder(view);
         return v;
 
@@ -72,24 +71,24 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Log.v("bind","bite");
-        holder.onClickListener(seances.get(position),listener);
-        holder.jourSemaine.setText(this.planning.getJour(seances.get(position)).toString());
-        holder.nomSeance.setText(seances.get(position).getNom());
-        holder.nbExercices.setText("Nombre d'exercices : "+seances.get(position).countExercices());
+        holder.onClickListener(exercices.get(position),listener);
+        holder.nomExercice.setText(this.exercices.get(position).getNom());
+        holder.nbSeries.setText("Nombre de séries : "+this.exercices.get(position).getNbSeries());
+        holder.nbReps.setText("Nombre de répétitions : "+this.exercices.get(position).getNbRepetitions());
+        holder.notes.setText(this.exercices.get(position).getNotes());
     }
 
 
-    public PlanningVisualizeAdapter(Context context, Planning planning, ArrayList<Seance> seances, OnItemClickListener listener) {
+    public SeanceVisualizeAdapter(Context context, ArrayList<Exercice> exercices, OnItemClickListener listener) {
         Log.v("planning","bite");
-        this.planning=planning;
-        this.seances=seances;
+        this.exercices=exercices;
         this.listener=listener;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getItemCount() {
-        return seances.size();
+        return exercices.size();
     }
 
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="410dp"
+    android:layout_height="210dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:background="@android:color/darker_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/exerciceNomSeanceVisualizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="25dp"
+            android:textAlignment="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/nbSeriesSeanceVisualizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:text="TextView"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:id="@+id/nbRepetitionsSeanceVisualizer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="17dp"
+                android:text="TextView"
+                android:textAlignment="center"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/notesSeanceVisualizer"
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

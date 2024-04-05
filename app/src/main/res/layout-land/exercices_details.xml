@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="10dp">
+
+
+            <TextView
+                android:id="@+id/descAccueil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="23dp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="'Nom Exercice'" />
+
+            <TextView
+                android:id="@+id/descTitleMuscleCible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Muscle ciblé" />
+
+            <TextView
+                android:id="@+id/descDataMuscleCible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleEquipement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Equipement requis" />
+
+            <TextView
+                android:id="@+id/descDataEquipement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleDifficulte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="Difficulté de l'exercice" />
+
+            <TextView
+                android:id="@+id/descDataDifficulte"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Data" />
+
+            <TextView
+                android:id="@+id/descTitleDebutant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text=" Pratiquant débutant" />
+
+            <TextView
+                android:id="@+id/descDataDebutant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleIntermediaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text=" Pratiquant intermédiaire" />
+
+            <TextView
+                android:id="@+id/descDataIntermediaire"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleConfirme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text=" Pratiquant confirmé" />
+
+            <TextView
+                android:id="@+id/descDataConfirme"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleMiseEnPlaceSimple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Mise en place simple" />
+
+            <TextView
+                android:id="@+id/descDataMiseEnPlaceSimple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="data" />
+
+            <TextView
+                android:id="@+id/descTitleMiseEnPlaceDetaillee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:textAlignment="center"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Mise en place détaillée" />
+
+            <TextView
+                android:id="@+id/descDataMiseEnPlaceDetaillee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:text="data" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
