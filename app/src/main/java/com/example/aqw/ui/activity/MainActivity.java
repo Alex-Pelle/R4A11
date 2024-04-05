@@ -115,10 +115,13 @@ public class MainActivity extends AppCompatActivity {
             }
             else {
                 nomSeanceJour.setText("Repos");
+                ((ListView) findViewById(R.id.list)).setAdapter(null);
             }
         } else {
             nomSeanceJour.setText("Repos");
+            ((ListView) findViewById(R.id.list)).setAdapter(null);
         }
+
         manager.close();
         manager= null;
     }
