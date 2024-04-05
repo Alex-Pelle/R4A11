@@ -24,7 +24,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
 
     private static LayoutInflater inflater = null;
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView jourSemaine;
         TextView nomSeance;
         TextView nbExercices;
@@ -33,7 +33,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
             super(itemView);
             Log.v("viewholder","bite");
             this.jourSemaine = itemView.findViewById(R.id.jourDeLaSemainePlanningVisualizer);
-            this.nomSeance = itemView.findViewById(R.id.nombreExercicesPlanningVisualizer);
+            this.nomSeance = itemView.findViewById(R.id.titreDeLaSeancePlanningVisualizer);
             this.nbExercices = itemView.findViewById(R.id.nombreExercicesPlanningVisualizer);
         }
     }
@@ -55,7 +55,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
         Log.v("bind","bite");
         holder.jourSemaine.setText(this.planning.getJour(seances.get(position)).toString());
         holder.nomSeance.setText(seances.get(position).getNom());
-        holder.nbExercices.setText(seances.get(position).countExercices());
+        holder.nbExercices.setText(""+seances.get(position).countExercices());
     }
 
 
