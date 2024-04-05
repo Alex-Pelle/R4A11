@@ -7,30 +7,30 @@
     tools:context=".ui.activity.MainActivity">
 
     <TextView
-        android:textSize="30dp"
-        android:textStyle="bold"
         android:id="@+id/bienvenueText"
         android:layout_width="410dp"
         android:layout_height="61dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="32dp"
         android:text="Bienvenue sur GymTracker !"
         android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:textStyle="bold"
-        android:textSize="20dp"
         android:id="@+id/seanceDuJourText"
         android:layout_width="200dp"
         android:layout_height="51dp"
         android:layout_marginTop="12dp"
         android:text="Séance du jour : "
         android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bienvenueText" />
 
@@ -40,17 +40,17 @@
         android:layout_height="51dp"
         android:layout_marginTop="12dp"
         android:text="Nom de la séance"
-        android:textSize="20dp"
         android:textAlignment="center"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.701"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bienvenueText" />
 
     <include
         layout="@layout/list_layout"
-        android:layout_width="415dp"
-        android:layout_height="531dp"
+        android:layout_width="433dp"
+        android:layout_height="218dp"
         android:layout_marginTop="99dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -42,6 +42,7 @@ public class SeanceVisualizeActivity extends AppCompatActivity {
                 @Override
                 public void onItemClick(Exercice item) {
                     Intent intent = new Intent(SeanceVisualizeActivity.this,DetailsExerciceActivity.class);
+                    Log.v("item",item.getNom());
                     intent.putExtra("Nom",item.getNom());
                     startActivity(intent);
                 }
