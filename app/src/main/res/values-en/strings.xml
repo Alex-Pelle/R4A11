@@ -43,4 +43,14 @@
     <string name="exercices">Exercises</string>
     <string name="chronom_tre">Timer</string>
     <string name="quitter">Quit</string>
+    <plurals name="plural_series">
+        <item quantity="one">set</item>
+        <item quantity="other">sets</item>
+    </plurals>
+    <plurals name="plural_reps">
+        <item quantity="one">%d rep</item>
+        <item quantity="other">%d reps</item>
+    </plurals>
+    <string name="ajouter_exercice">Add an exercise</string>
+    <string name="creation_seance">Creating a session</string>
 </resources>

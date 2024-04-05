@@ -1,7 +1,6 @@
 package com.example.aqw.api;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.aqw.R;
 import com.google.gson.JsonElement;
@@ -18,7 +17,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
-    private static final String TAG = ApiManager.class.getSimpleName();
     private ExerciceAPIService service;
     private ExecutorService executorService;
     private Context context;
@@ -49,11 +47,9 @@ public class ApiManager {
         }
         Response<JsonElement> reponse = service.exercice(exercice).execute();
         DetailExercice details = new DetailExercice();
-        Log.v(TAG, reponse.toString());
         for(JsonElement elt : reponse.body().getAsJsonArray()) {
             JsonObject x = elt.getAsJsonObject();
             if (x.get("WorkOut").getAsString().equalsIgnoreCase(exercice)) {
-                Log.v(TAG, x.get("WorkOut").getAsString());
                 details.setNom(x.get("WorkOut").getAsString());
                 details.setMuscles(x.get("Muscles").getAsString());
                 details.setLevel(x.get("Intensity_Level").getAsString());

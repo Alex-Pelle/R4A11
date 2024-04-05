@@ -5,11 +5,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.aqw.modele.*;
 
-import java.io.Serializable;
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,7 +15,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class DatabaseManager {
-    private static final String TAG = DatabaseManager.class.getSimpleName();
     private DatabaseHelper dbHelper;
     private final Context context;
     private SQLiteDatabase database;
@@ -42,7 +39,6 @@ public class DatabaseManager {
     }
     private long insertExercice(Exercice exercice, long idSeance) {
         ContentValues contentValues = new ContentValues();
-        Log.v(TAG,"Insertion exercice : "+exercice.getNom());
         contentValues.put(DatabaseHelper.COMPOSITION_NOM_EXERCICE, exercice.getNom());
         contentValues.put(DatabaseHelper.COMPOSITION_ID_SEANCE, idSeance);
         contentValues.put(DatabaseHelper.COMPOSITION_NOMBRE_SERIES, exercice.getNbSeries());
@@ -54,7 +50,6 @@ public class DatabaseManager {
     private long insertSeance(Seance seance) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.SEANCE_NOM, seance.getNom());
-        Log.v(TAG,"Insertion seance : "+seance.getNom());
         long idSeance = database.insert(DatabaseHelper.TABLE_SEANCE, null, contentValues);
 
         for (Exercice exercice : seance) {
@@ -66,7 +61,6 @@ public class DatabaseManager {
     public long insertPlanning(Planning planning) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.PLANNING_NOM, planning.getNom());
-        Log.v(TAG,"Insertion planning : " + planning.getNom());
         for (Planning.Jour jour : Planning.Jour.values()) {
             Seance seanceDuJour = planning.getSeance(jour);
             if (seanceDuJour != null ) {
@@ -79,7 +73,6 @@ public class DatabaseManager {
 
     @SuppressLint("Range")
     public List<Planning> fetchPlannings() {
-        Log.v(TAG, "Fetch");
         Cursor cursor = database.rawQuery("SELECT * FROM "+DatabaseHelper.TABLE_PLANNING,null);
 
         List<Planning> plannings = new LinkedList<>();
@@ -100,7 +93,6 @@ public class DatabaseManager {
             plannings.add(planning);
             cursor.moveToNext();
         }
-        Log.v(TAG, "PLANNING : "+System.lineSeparator() + plannings);
         cursor.close();
         return plannings;
     }
@@ -136,7 +128,6 @@ public class DatabaseManager {
             seance = new Seance(cursor.getString(1));
 
             seance.addExercices(fetchExercices(id));
-            Log.v(TAG, seance.toString());
         }
         cursor.close();
         return seance;

@@ -1,9 +1,7 @@
 package com.example.aqw.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,18 +9,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
 import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Seance;
-import com.example.aqw.ui.adapter.ExerciseSelectionSeanceAdapter;
-import com.example.aqw.ui.adapter.PlanningButtonAdapter;
 import com.example.aqw.ui.adapter.SeanceCreationAdapter;
 
-import java.util.ArrayList;
 
-public class SeanceCreationActivity extends AppCompatActivity {
+public class SeanceCreationActivity extends GymTrackerActivity {
 
     public static final int REQUEST_EXERCISE_CODE = 1234;
 
@@ -39,7 +33,6 @@ public class SeanceCreationActivity extends AppCompatActivity {
 
         seance = (Seance) getIntent().getSerializableExtra("seance");
 
-        Log.v("s", String.valueOf(seance));
         listView = findViewById(R.id.list);
         listView.setChoiceMode(listView.CHOICE_MODE_SINGLE);
         adapter = new SeanceCreationAdapter(SeanceCreationActivity.this, seance.getExercices());
@@ -48,8 +41,8 @@ public class SeanceCreationActivity extends AppCompatActivity {
 
         TextView nomPage = findViewById(R.id.textPageName);
         Button button = findViewById(R.id.buttonCreation);
-        nomPage.setText("Création de séance");
-        button.setText("Ajouter un exercice");
+        nomPage.setText(R.string.creation_seance);
+        button.setText(R.string.ajouter_exercice);
         Button enregistrer = findViewById(R.id.buttonEnregistrer);
         Button annuler = findViewById(R.id.buttonAnnuler);
         EditText nomSeance = findViewById(R.id.nomSeance);
@@ -67,7 +60,6 @@ public class SeanceCreationActivity extends AppCompatActivity {
                  if (seance.getExercices().isEmpty()) {
                     Toast.makeText(SeanceCreationActivity.this,getString(R.string.erreur_exercice), Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.v("SeanceCreation", seance.toString());
                     if(nomSeance.getText().toString().trim().isEmpty()) {
                         seance.setNom("Sans titre");
                     } else {
@@ -105,8 +97,6 @@ public class SeanceCreationActivity extends AppCompatActivity {
             Bundle extras = data.getExtras();
             Exercice exercice = (Exercice) extras.get("exo");
             int position = (Integer) extras.get("Position");
-            Log.v("positionEdit", String.valueOf(position));
-            Log.v("exerciceEdit",exercice.toString());
             if (position!=-1) {
                 seance.getExercices().remove(position);
             }

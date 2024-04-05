@@ -44,8 +44,18 @@
     <string name="exercices">Exercices</string>
     <string name="chronom_tre">Chronomètre</string>
     <string name="quitter">Quitter</string>
+    <string name="ajouter_exercice">Ajouter un exercice</string>
+    <string name="creation_seance">Création séance</string>
     <plurals name="exercice">
-        <item quantity="one">exercice</item>
-        <item quantity="other">exercices</item>
+        <item quantity="one">%d exercice</item>
+        <item quantity="other">%d exercices</item>
+    </plurals>
+    <plurals name="plural_series">
+        <item quantity="one">%d serie</item>
+        <item quantity="other">%d series</item>
+    </plurals>
+    <plurals name="plural_reps">
+        <item quantity="one">%d répétition</item>
+        <item quantity="other">%d répétitions</item>
     </plurals>
 </resources>

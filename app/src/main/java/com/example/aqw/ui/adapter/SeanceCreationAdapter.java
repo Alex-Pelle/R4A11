@@ -3,26 +3,17 @@ package com.example.aqw.ui.adapter;
 import static com.example.aqw.ui.activity.SeanceCreationActivity.REQUEST_EXERCISE_CODE;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
-
 import com.example.aqw.R;
 import com.example.aqw.modele.Exercice;
-import com.example.aqw.modele.Seance;
 import com.example.aqw.ui.activity.ExerciseParameter;
-import com.example.aqw.ui.activity.PlanningCreationActivity;
-import com.example.aqw.ui.activity.PlanningsActivity;
-import com.example.aqw.ui.activity.SeanceCreationActivity;
 
 import java.util.ArrayList;
 
@@ -82,7 +73,6 @@ public class SeanceCreationAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity, ExerciseParameter.class);
-                Log.v("seancecreation",exercices.get(position).toString());
                 intent.putExtra("Exercice",exercices.get(position));
                 intent.putExtra("Position",position);
                 activity.startActivityForResult(intent,REQUEST_EXERCISE_CODE);

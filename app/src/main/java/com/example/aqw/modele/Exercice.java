@@ -1,7 +1,6 @@
 package com.example.aqw.modele;
 
 import java.io.Serializable;
-import java.util.EventListener;
 import java.util.Objects;
 
 public class Exercice implements Cloneable, Serializable {

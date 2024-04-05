@@ -6,6 +6,7 @@ import com.example.aqw.modele.Seance;
 
 public class Seeder {
     public void seed(DatabaseManager manager) {
+        //CLASSE PLUS UTILISEE, seulement pour tester l'application au début
         manager.emptyDatabase();
         String notes = "";
         Exercice bench5x5 = new Exercice("Développé couché",5,5, notes);
@@ -55,6 +56,6 @@ public class Seeder {
 
         manager.insertPlanning(ppl2);
 
-        manager.choisirPlanning(ppl);
+        manager.choisirPlanning(ppl2);
     }
 }

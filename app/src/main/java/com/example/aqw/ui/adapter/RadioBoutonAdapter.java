@@ -4,11 +4,9 @@ import static com.example.aqw.ui.activity.PlanningsActivity.CODE_REQUEST_PLANNIN
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -19,7 +17,6 @@ import com.example.aqw.R;
 import com.example.aqw.database.DatabaseManager;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.ui.activity.PlanningCreationActivity;
-import com.example.aqw.ui.activity.PlanningsActivity;
 
 import java.util.ArrayList;
 
@@ -83,7 +80,6 @@ public class RadioBoutonAdapter extends BaseAdapter {
                 if (selectedPosition!=position) {
                     selectedPosition = position;
                     dbManager.choisirPlanning(dbManager.fetchPlanning(plannings.get(position).getNom()));
-                    Log.v(TAG, dbManager.getChoix().toString());
                 } else {
                     selectedPosition=-1;
                 }
@@ -98,8 +94,10 @@ public class RadioBoutonAdapter extends BaseAdapter {
                 if(dbManager.getChoix().equals(plannings.get(position)) && plannings.size()>1) {
                     Toast.makeText(activity,"Le planning doit être désélectionné pour être supprimé", Toast.LENGTH_SHORT).show();
                 } else {
-                    if(plannings.size()==1) {
+                    if(plannings.size()==1 ) {
                         selectedPosition =-1;
+                    } else if (selectedPosition >= position) {
+                        selectedPosition -= 1;
                     }
                     dbManager.deletePlanning(plannings.get(position));
                     plannings.remove(plannings.get(position));

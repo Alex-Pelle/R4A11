@@ -3,14 +3,12 @@ package com.example.aqw.ui.activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
 
@@ -18,9 +16,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ChronoActivity  extends AppCompatActivity {
+public class ChronoActivity  extends GymTrackerActivity {
 
-    private static final String TAG = ChronoActivity.class.getSimpleName();
     private int duration;
     private int elapsed;
     private ProgressBar progressBar;

@@ -1,10 +1,8 @@
 package com.example.aqw.ui.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
 import com.example.aqw.api.ApiManager;
@@ -14,8 +12,7 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DetailsExerciceActivity extends AppCompatActivity {
-    private static final String TAG = DetailsExerciceActivity.class.getSimpleName();
+public class DetailsExerciceActivity extends GymTrackerActivity {
     ExecutorService executor = Executors.newSingleThreadExecutor();
 
     @Override
@@ -26,13 +23,8 @@ public class DetailsExerciceActivity extends AppCompatActivity {
             try {
                 DetailExercice details = new ApiManager(this).details(getIntent().getStringExtra("Nom"));
 
-                Log.v(TAG,"Nom : "+details.getNom());
-                Log.v(TAG,"Intensity : "+details.getLevel());
-                Log.v(TAG, "Difficulté : "+((TextView)findViewById(R.id.descDataDifficulte)).getText().toString());
                 runOnUiThread(() -> this.afficher(details) );
             } catch (IOException e) {
-                Log.v(TAG, "crash");
-
                 throw new RuntimeException(e);
             }
         });

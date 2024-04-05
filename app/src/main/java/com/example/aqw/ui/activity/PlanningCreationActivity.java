@@ -15,16 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
 import com.example.aqw.database.DatabaseManager;
-import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
 import com.example.aqw.ui.adapter.PlanningButtonAdapter;
-import com.example.aqw.ui.adapter.SeanceCreationAdapter;
 
 import java.sql.SQLDataException;
 import java.util.ArrayList;
 
-public class PlanningCreationActivity extends AppCompatActivity {
+public class PlanningCreationActivity extends GymTrackerActivity {
 
     ListView listView;
     ArrayList<Seance> seances;
@@ -33,10 +31,6 @@ public class PlanningCreationActivity extends AppCompatActivity {
     Planning oldPlanning;
 
     public static int CODE_REQUEST_SEANCE = 54321;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

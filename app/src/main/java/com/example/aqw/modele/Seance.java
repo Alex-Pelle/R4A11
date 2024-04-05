@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 
 public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
@@ -25,10 +24,6 @@ public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
     }
     public void addExercices(Collection<Exercice> exercices) {
         this.exercices.addAll(exercices);
-    }
-
-    public Exercice getExercice(int index) {
-        return exercices.get(index);
     }
 
     public Iterator<Exercice> iterator() {

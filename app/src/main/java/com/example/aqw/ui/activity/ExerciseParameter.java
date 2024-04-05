@@ -2,23 +2,19 @@ package com.example.aqw.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
-import com.example.aqw.api.ApiManager;
 import com.example.aqw.modele.Exercice;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 
-public class ExerciseParameter  extends AppCompatActivity {
+public class ExerciseParameter  extends GymTrackerActivity {
 
     Button enregistrer;
     Button annuler;
@@ -42,10 +38,8 @@ public class ExerciseParameter  extends AppCompatActivity {
 
 
         int position = getIntent().getIntExtra("Position",-1);
-        Log.v("position", String.valueOf(position));
         if (position!=-1) {
             Exercice exerciceEdit = (Exercice) getIntent().getSerializableExtra("Exercice");
-            Log.v("exerciceparamter", exerciceEdit.toString());
             nomExercice = exerciceEdit.getNom();
 
             repetitions.setText(""+exerciceEdit.getNbRepetitions());

@@ -1,15 +1,6 @@
 package com.example.aqw.ui.activity;
 
-
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,59 +12,15 @@ import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
 
 import java.sql.SQLDataException;
-import java.time.Instant;
 import java.util.Calendar;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = MainActivity.class.getSimpleName();
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.nav_bar,menu);
-        MenuItem plannings = menu.getItem(0);
-        MenuItem chrono = menu.getItem(1);
-        MenuItem quit = menu.getItem(2);
-
-        quit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                System.exit(0);
-                return true;
-            }
-        });
-
-        chrono.setOnMenuItemClickListener((item) -> {
-            Intent intent = new Intent(MainActivity.this, ChronoActivity.class);
-            startActivity(intent);
-            return true;
-        });
-
-
-
-
-        plannings.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Intent intent = new Intent(MainActivity.this, PlanningsActivity.class);
-                startActivity(intent);
-                return true;
-            }
-        });
-
-        return true;
-    }
-
-
-
-
+public class MainActivity extends GymTrackerActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
     }
 
     @Override
@@ -95,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         if (planning!=null) {
             Seance seanceDuJour = planning.getSeance(aujourdhui);
             if (!seanceDuJour.getExercices().isEmpty()) {
-                Log.v(TAG, seanceDuJour.toString());
                 nomSeanceJour.setText(seanceDuJour.getNom());
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
                 for (Exercice ex : seanceDuJour) {

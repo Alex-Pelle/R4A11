@@ -1,23 +1,18 @@
 package com.example.aqw.ui.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.aqw.R;
-import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
-import com.example.aqw.ui.activity.SeanceVisualizeActivity;
 
-import java.util.ArrayList;
 import java.util.ArrayList;
 
 public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisualizeAdapter.ViewHolder> {
@@ -41,7 +36,6 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            Log.v("viewholder","bite");
             this.jourSemaine = itemView.findViewById(R.id.jourDeLaSemainePlanningVisualizer);
             this.nomSeance = itemView.findViewById(R.id.titreDeLaSeancePlanningVisualizer);
             this.nbExercices = itemView.findViewById(R.id.nombreExercicesPlanningVisualizer);
@@ -63,7 +57,6 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.v("onCreateView","bite");
         View view = inflater.inflate(R.layout.planning_visualize_item,parent,false);
         ViewHolder v = new ViewHolder(view);
         return v;
@@ -72,7 +65,6 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.v("bind","bite");
         holder.onClickListener(seances.get(position),listener);
         holder.jourSemaine.setText(this.planning.getJour(seances.get(position)).toString(context));
         holder.nomSeance.setText(seances.get(position).getNom());
@@ -81,7 +73,6 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
 
 
     public PlanningVisualizeAdapter(Context context, Planning planning, ArrayList<Seance> seances, OnItemClickListener listener) {
-        Log.v("planning","bite");
         this.planning = planning;
         this.seances = seances;
         this.listener = listener;

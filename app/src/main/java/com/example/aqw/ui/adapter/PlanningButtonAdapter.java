@@ -6,41 +6,26 @@ package com.example.aqw.ui.adapter;
 import static com.example.aqw.ui.activity.PlanningCreationActivity.CODE_REQUEST_SEANCE;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.example.aqw.R;
-import com.example.aqw.modele.Exercice;
 import com.example.aqw.modele.Planning;
 import com.example.aqw.modele.Seance;
 import com.example.aqw.ui.activity.SeanceCreationActivity;
-import com.example.aqw.ui.item.SeanceCreationButton;
-import com.google.android.material.button.MaterialButton;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 public class PlanningButtonAdapter extends BaseAdapter {
 
     private Activity activity;
-    private final PlanningButtonAdapter adapter = this;
     private ArrayList<Seance> seances;
 
     private Activity getActivity() {
@@ -79,7 +64,6 @@ public class PlanningButtonAdapter extends BaseAdapter {
             holder.textView = convertView.findViewById(R.id.jourDeLaSemaineSeanceText);
             holder.delete = convertView.findViewById(R.id.buttonRemoveSeance);
             convertView.setTag(holder);
-            Log.v("ss", String.valueOf(seances.get(position)));
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
@@ -96,7 +80,6 @@ public class PlanningButtonAdapter extends BaseAdapter {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("init seance", seances.get(position).toString());
                 Intent intent = new Intent(activity, SeanceCreationActivity.class);
                 intent.putExtra("seance",seances.get(position));
                 intent.putExtra("position",position);

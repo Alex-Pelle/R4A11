@@ -5,6 +5,11 @@
     <item
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:title="@string/accueil"
+        android:id="@+id/accueil"/>
+    <item
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:title="@string/plannings"
         android:id="@+id/plannings"/>
     <item

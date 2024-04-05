@@ -2,33 +2,27 @@ package com.example.aqw.ui.activity;
 
 import static com.example.aqw.ui.activity.SeanceCreationActivity.REQUEST_EXERCISE_CODE;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.aqw.R;
 import com.example.aqw.api.ApiManager;
 import com.example.aqw.modele.Exercice;
 import com.example.aqw.ui.adapter.ExerciseSelectionSeanceAdapter;
-import com.example.aqw.ui.adapter.PlanningButtonAdapter;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
-public class ExercisesActivity extends AppCompatActivity {
+public class ExercisesActivity extends GymTrackerActivity {
 
     private static final String TAG = ExercisesActivity.class.getSimpleName();
     ListView listView;

@@ -2,25 +2,20 @@ package com.example.aqw.ui.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.aqw.R;
-import com.example.aqw.modele.Seance;
 import com.example.aqw.ui.activity.DetailsExerciceActivity;
-import com.example.aqw.ui.activity.ExercisesActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class ExerciseSelectionSeanceAdapter  extends ArrayAdapter<Map.Entry<String,String>> {
-    private static final String TAG = ExerciseSelectionSeanceAdapter.class.getSimpleName();
     private List<Map.Entry<String,String>> exercices;
     private LayoutInflater layout;
     private Context context;
