@@ -44,7 +44,7 @@ public class ExercisesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exercices);
         listView = findViewById(R.id.list);
-        Toast.makeText(this, "Récuparations des exercices...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,R.string.connexion_api , Toast.LENGTH_SHORT).show();
 
         executor.submit(
                 () -> {
@@ -57,7 +57,6 @@ public class ExercisesActivity extends AppCompatActivity {
                         runOnUiThread(() -> findViewById(R.id.loadingBar).setVisibility(View.GONE));
 
                         listView.setOnItemClickListener( (adapterView, view, i, l) -> {
-
                             Intent intent = null;
                             if (getIntent().getBooleanExtra("selection", true)) {
                                 intent = new Intent(ExercisesActivity.this,ExerciseParameter.class);
@@ -69,7 +68,7 @@ public class ExercisesActivity extends AppCompatActivity {
                             startActivityForResult(intent,REQUEST_EXERCISE_CODE);
                         });
                     } catch (IOException e) {
-                        runOnUiThread(() -> Toast.makeText(ExercisesActivity.this,"Erreur de connexion à l'api",Toast.LENGTH_SHORT).show());
+                        runOnUiThread(() -> Toast.makeText(ExercisesActivity.this,R.string.erreur_api,Toast.LENGTH_SHORT).show());
                     }
                 }
         );

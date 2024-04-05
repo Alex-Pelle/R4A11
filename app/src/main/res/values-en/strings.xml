@@ -3,7 +3,36 @@
     <string name="chrono_button_text">Start</string>
     <string name="titre_chrono">Rest timer</string>
     <string name="erreur_api">API connection error</string>
-    <string name="connexion_api">Fetching exercises...</string>
+    <string name="connexion_api">Fetching exercises…</string>
     <string name="rebours">Down</string>
     <string name="croissant">Up</string>
+    <string name="exercice_titre">Exercises</string>
+    <string name="muscle_cible">Targeted muscle group</string>
+    <plurals name="exercice">
+        <item quantity="one">exercise</item>
+        <item quantity="other">exercises</item>
+    </plurals>
+    <string name="equipement_requis">Required equipment</string>
+    <string name="difficult_de_l_exercice">Exercice difficulty</string>
+    <string name="pratiquant_debutant">Beginner volume</string>
+    <string name="pratiquant_intermediaire">Intermediate volume</string>
+    <string name="pratiquant_confirme">Advanced volume</string>
+    <string name="mise_en_place_simple">Simple setup</string>
+    <string name="mise_en_place_detaillee">Detailled setup</string>
+    <string name="bienvenue_sur_gymtracker">Welcome to GymTracker !</string>
+    <string name="nom_du_planning">Plan name</string>
+    <string name="seance_du_jour">"Today's session : "</string>
+    <string name="enregistrer">Save</string>
+    <string name="annuler">Cancel</string>
+    <string name="series">Sets</string>
+    <string name="nom_de_la_seance">Session name</string>
+    <string name="repetitions">Reps</string>
+    <string name="notes">Complementary notes</string>
+    <string name="lundi">Monday</string>
+    <string name="mardi">Tuesday</string>
+    <string name="mercredi">Wednesday</string>
+    <string name="jeudi">Thrusday</string>
+    <string name="vendredi">Friday</string>
+    <string name="samedi">Saturday</string>
+    <string name="dimanche">Sunday</string>
 </resources>
