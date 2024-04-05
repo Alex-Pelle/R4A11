@@ -95,25 +95,30 @@ public class MainActivity extends AppCompatActivity {
         } catch (SQLDataException e) {
             throw new RuntimeException(e);
         }
-
+        //manager.seed();
+        TextView nomSeanceJour = findViewById(R.id.nomSeanceDuJourText);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         Planning.Jour aujourdhui = Planning.Jour.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
         Planning planning = manager.getChoix();
-        Seance seanceDuJour = planning.getSeance(aujourdhui);
-        if (!seanceDuJour.getExercices().isEmpty()) {
-            Log.v(TAG, seanceDuJour.toString());
-            ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText(seanceDuJour.getNom());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-            for (Exercice ex : seanceDuJour) {
-                adapter.add(ex.toString());
-            }
-            ((ListView) findViewById(R.id.list)).setAdapter(adapter);
-        }
-        else {
-            ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText("Repos");
-        }
 
+        if (planning!=null) {
+            Seance seanceDuJour = planning.getSeance(aujourdhui);
+            if (!seanceDuJour.getExercices().isEmpty()) {
+                Log.v(TAG, seanceDuJour.toString());
+                nomSeanceJour.setText(seanceDuJour.getNom());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+                for (Exercice ex : seanceDuJour) {
+                    adapter.add(ex.toString());
+                }
+                ((ListView) findViewById(R.id.list)).setAdapter(adapter);
+            }
+            else {
+                nomSeanceJour.setText("Repos");
+            }
+        } else {
+            nomSeanceJour.setText("Repos");
+        }
         manager.close();
         manager= null;
     }

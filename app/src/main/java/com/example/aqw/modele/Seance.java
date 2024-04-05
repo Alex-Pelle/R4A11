@@ -43,6 +43,8 @@ public class Seance implements Iterable<Exercice>, Cloneable, Serializable {
         this.nom = nom;
     }
 
+    public int countExercices() {return this.exercices.size();}
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

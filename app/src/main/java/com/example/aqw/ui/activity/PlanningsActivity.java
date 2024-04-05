@@ -1,13 +1,17 @@
 package com.example.aqw.ui.activity;
 
+import static com.example.aqw.ui.activity.SeanceCreationActivity.REQUEST_EXERCISE_CODE;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,6 +53,14 @@ public class PlanningsActivity extends AppCompatActivity {
         listView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
 
         adapter = new RadioBoutonAdapter(this,planning, manager);
+
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            Toast.makeText(PlanningsActivity.this,"clic",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(PlanningsActivity.this, PlanningVisualizeActivity.class);
+            intent.putExtra("plan", planning.get(i));
+            startActivity(intent);
+        });
+
         listView.setAdapter(adapter);
         createPlanning.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +69,8 @@ public class PlanningsActivity extends AppCompatActivity {
                 startActivityForResult(intent,CODE_REQUEST_PLANNING);
             }
         });
+
+
 
 
     }

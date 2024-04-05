@@ -3,9 +3,13 @@ package com.example.aqw.modele;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -42,11 +46,13 @@ public class Planning implements Cloneable, Serializable {
         }
     }
     private Map<Jour, Seance> plan;
+    private Map<Seance,Jour> jourSeance;
     private String nom;
 
     public Planning(String nom) {
         this.nom = nom;
         this.plan = new HashMap<>();
+        this.jourSeance = new HashMap<>();
     }
     @NonNull
     public String getNom() {
@@ -61,13 +67,22 @@ public class Planning implements Cloneable, Serializable {
         }
         return true;
     }
+
+
+    public Collection<Seance> getSeances() {
+        return plan.values();
+    }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
 
     public void setSeance(Jour jour, Seance seance) {
         this.plan.put(jour,seance);
+        this.jourSeance.put(seance,jour);
     }
+
+    public Jour getJour(Seance seance) {return this.jourSeance.get(seance);}
 
     public Seance getSeance(Jour jour) {
         return this.plan.get(jour);
