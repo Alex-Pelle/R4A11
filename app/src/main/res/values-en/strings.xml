@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="chrono_button_text">Start</string>
+    <string name="titre_chrono">Rest timer</string>
+    <string name="erreur_api">API connection error</string>
+    <string name="connexion_api">Fetching exercises...</string>
+    <string name="rebours">Down</string>
+    <string name="croissant">Up</string>
+</resources>
