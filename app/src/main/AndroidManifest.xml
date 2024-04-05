@@ -93,6 +93,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="landscape"
             android:name=".ui.activity.PlanningVisualizeActivity"
             android:windowSoftInputMode="stateVisible"
             android:exported="true">

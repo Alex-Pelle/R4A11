@@ -1,6 +1,7 @@
 package com.example.aqw.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class PlanningVisualizeActivity extends AppCompatActivity {
         planningNom = findViewById(R.id.nomPlanningVisualizer);
 
         planning = (Planning) getIntent().getSerializableExtra("plan");
+        Log.v("aaaaaaaaaaaaaa", String.valueOf(planning!=null));
         if (planning!=null) {
             planningNom.setText(planning.getNom());
             seances = new ArrayList<>();

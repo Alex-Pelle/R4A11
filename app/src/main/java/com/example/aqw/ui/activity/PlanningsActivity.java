@@ -58,6 +58,7 @@ public class PlanningsActivity extends AppCompatActivity {
             Toast.makeText(PlanningsActivity.this,"clic",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(PlanningsActivity.this, PlanningVisualizeActivity.class);
             intent.putExtra("plan", planning.get(i));
+            Log.v("plan",planning.get(i).toString());
             startActivity(intent);
         });
 

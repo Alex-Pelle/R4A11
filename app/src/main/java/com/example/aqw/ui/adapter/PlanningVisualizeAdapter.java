@@ -54,7 +54,7 @@ public class PlanningVisualizeAdapter extends RecyclerView.Adapter<PlanningVisua
     }
 
 
-    public PlanningVisualizeAdapter(Context context, Planning plannings, ArrayList<Seance> seances) {
+    public PlanningVisualizeAdapter(Context context, Planning planning, ArrayList<Seance> seances) {
         this.planning=planning;
         this.seances=seances;
         this.context=context;
