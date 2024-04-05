@@ -88,6 +88,7 @@ public class PlanningsActivity extends AppCompatActivity {
                 manager.choisirPlanning(planning.get(0));
             }
             adapter.notifyDataSetChanged();
+            manager.close();
         }
     }
 

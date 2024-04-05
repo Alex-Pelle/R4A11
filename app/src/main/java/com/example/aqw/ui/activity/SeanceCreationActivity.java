@@ -68,6 +68,7 @@ public class SeanceCreationActivity extends AppCompatActivity {
                     Toast.makeText(SeanceCreationActivity.this,"La séance doit comporter au moins un exercice", Toast.LENGTH_SHORT).show();
                 } else {
                     Log.v("SeanceCreation", seance.toString());
+                    seance.setNom(((TextView)findViewById(R.id.nomSeance)).getText().toString());
                     Intent intentRetour = new Intent();
                     intentRetour.putExtra("seance",seance);
                     intentRetour.putExtra("position",getIntent().getIntExtra("position",-1));

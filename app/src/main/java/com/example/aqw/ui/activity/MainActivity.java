@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         Planning.Jour aujourdhui = Planning.Jour.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
         Planning planning = manager.getChoix();
         Seance seanceDuJour = planning.getSeance(aujourdhui);
-        if (seanceDuJour != null) {
+        if (!seanceDuJour.getExercices().isEmpty()) {
             Log.v(TAG, seanceDuJour.toString());
             ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText(seanceDuJour.getNom());
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
@@ -110,7 +110,9 @@ public class MainActivity extends AppCompatActivity {
             }
             ((ListView) findViewById(R.id.list)).setAdapter(adapter);
         }
-
+        else {
+            ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText("Repos");
+        }
 
         manager.close();
         manager= null;

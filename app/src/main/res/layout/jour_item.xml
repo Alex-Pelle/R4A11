@@ -15,9 +15,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/jourDeLaSemaineSeanceText"
-        android:layout_width="334dp"
+        android:layout_width="280dp"
         android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:text="TextView"
@@ -25,4 +26,16 @@
         app:layout_constraintStart_toEndOf="@+id/buttonAddSeance"
         app:layout_constraintTop_toTopOf="@+id/buttonAddSeance"
         app:layout_constraintVertical_bias="0.514" />
+
+    <Button
+        android:id="@+id/buttonRemoveSeance"
+        android:layout_width="52dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="Supprimer "
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/jourDeLaSemaineSeanceText"
+        app:layout_constraintStart_toEndOf="@+id/jourDeLaSemaineSeanceText"
+        app:layout_constraintTop_toTopOf="@+id/jourDeLaSemaineSeanceText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

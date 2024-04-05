@@ -74,11 +74,18 @@ public class PlanningCreationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (nomPlanning.getText().length()<=0) {
                     Toast.makeText(PlanningCreationActivity.this,"Le planning doit avoir un nom", Toast.LENGTH_SHORT).show();
-                } else if(planning.isPlanningSeancesEmpty()){
-                    Toast.makeText(PlanningCreationActivity.this,"Le planning doit comporter au moins une séance", Toast.LENGTH_SHORT).show();
                 } else {
                     planning.setNom(String.valueOf(nomPlanning.getText()));
                     DatabaseManager manager = new DatabaseManager(PlanningCreationActivity.this);
+                    int i = 0;
+                    for (Planning.Jour jour : Planning.Jour.values()) {
+                        planning.setSeance(jour, seances.get(i));
+                        i++;
+                    }
+                    if(planning.isPlanningSeancesEmpty()){
+                        Toast.makeText(PlanningCreationActivity.this,"Le planning doit comporter au moins une séance", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     try {
                         manager.open();
                     } catch (SQLDataException e) {
@@ -120,8 +127,8 @@ public class PlanningCreationActivity extends AppCompatActivity {
 
             Integer position = (Integer) extras.get("position");
             Seance seanceEdit = (Seance) extras.get("seance");
-            seances.get(position).setExercices(seanceEdit.getExercices());
-            Log.v("seance OG", seances.get((Integer) extras.get("position")).toString());
+            seances.set(position, seanceEdit);
+            Log.v("seance OG", seances.toString());
             adapter.notifyDataSetChanged();
             Log.v("plan",planning.toString());
         }

@@ -77,6 +77,7 @@ public class PlanningButtonAdapter extends BaseAdapter {
             holder = new ViewHolder();
             holder.button = convertView.findViewById(R.id.buttonAddSeance);
             holder.textView = convertView.findViewById(R.id.jourDeLaSemaineSeanceText);
+            holder.delete = convertView.findViewById(R.id.buttonRemoveSeance);
             convertView.setTag(holder);
             Log.v("ss", String.valueOf(seances.get(position)));
         } else {
@@ -85,8 +86,11 @@ public class PlanningButtonAdapter extends BaseAdapter {
         holder.textView.setText(seances.get(position).getNom());
         if (seances.get(position).getExercices().isEmpty()) {
             holder.button.setCompoundDrawablesWithIntrinsicBounds(ActivityCompat.getDrawable(this.getActivity(), android.R.drawable.ic_input_add), null, null, null);
+            holder.delete.setVisibility(View.INVISIBLE);
         } else {
             holder.button.setCompoundDrawablesWithIntrinsicBounds(ActivityCompat.getDrawable(this.getActivity(), android.R.drawable.ic_menu_edit), null, null, null);
+            holder.delete.setVisibility(View.VISIBLE);
+            holder.delete.setCompoundDrawablesWithIntrinsicBounds(ActivityCompat.getDrawable(this.getActivity(), android.R.drawable.ic_delete), null, null, null);
         }
 
         holder.button.setOnClickListener(new View.OnClickListener() {
@@ -100,11 +104,16 @@ public class PlanningButtonAdapter extends BaseAdapter {
             }
         });
 
+        holder.delete.setOnClickListener((v) -> {
+            seances.set(position, new Seance(Planning.Jour.valueOf((position+2)%7).name()));
+            notifyDataSetChanged();
+        });
 
         return convertView;
     }
 
     static class ViewHolder {
+        Button delete;
         Button button;
         TextView textView;
     }
