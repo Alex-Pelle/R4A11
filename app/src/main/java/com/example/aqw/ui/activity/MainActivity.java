@@ -99,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         Planning.Jour aujourdhui = Planning.Jour.valueOf(calendar.get(Calendar.DAY_OF_WEEK));
+        Log.v(TAG +" aujd", aujourdhui.toString());
         Planning planning = manager.getChoix();
+        Log.v(TAG +" plann", planning.toString());
         Seance seanceDuJour = planning.getSeance(aujourdhui);
         if (!seanceDuJour.getExercices().isEmpty()) {
             Log.v(TAG, seanceDuJour.toString());
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
             ((TextView) findViewById(R.id.nomSeanceDuJourText)).setText("Repos");
+            ((ListView) findViewById(R.id.list)).setAdapter(null);
         }
 
         manager.close();
