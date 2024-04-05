@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class ChronoActivity  extends AppCompatActivity {
     private EditText minutes;
     private EditText secondes;
     private TextView restant;
+    private RadioGroup radio;
     private ScheduledExecutorService executor;
 
     @Override
@@ -34,24 +36,33 @@ public class ChronoActivity  extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chrono);
 
-        this.progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        this.progressBar =findViewById(R.id.progressBar);
         progressBar.setMax(0);
-        this.bouton = (Button) findViewById(R.id.bouton);
+        this.bouton = findViewById(R.id.bouton);
 
-        this.minutes = (EditText) findViewById(R.id.minutes);
-        this.secondes = (EditText) findViewById(R.id.secondes);
+        this.minutes = findViewById(R.id.minutes);
+        this.secondes = findViewById(R.id.secondes);
 
-        this.restant = (TextView) findViewById(R.id.restant);
+        this.restant = findViewById(R.id.restant);
         this.duration = 0;
         this.elapsed = 0;
+
+        this.radio = findViewById(R.id.radioGroup);
         executor = Executors.newScheduledThreadPool(1);
 
         Runnable increment = () -> {
             runOnUiThread(()->progressBar.setProgress(elapsed));
             elapsed++;
-            runOnUiThread(()->restant.setText(elapsed >= duration ?
-                    "0:00":
-                    format()));
+            if (radio.getCheckedRadioButtonId() == R.id.rebours) {
+                runOnUiThread(()->restant.setText(elapsed >= duration ?
+                        getString(R.string.default_temps_restant) :
+                        getString(R.string.heure_formatee,(duration-elapsed)/60,(duration-elapsed)%60)));
+            }
+            else {
+                runOnUiThread(()->restant.setText(elapsed >= duration ?
+                        getString(R.string.default_temps_restant) :
+                        getString(R.string.heure_formatee,(elapsed)/60,(elapsed)%60)));
+            }
         };
 
         executor.scheduleAtFixedRate(increment, 0, 1, TimeUnit.SECONDS);
@@ -74,8 +85,8 @@ public class ChronoActivity  extends AppCompatActivity {
                 try {
                     int val = Integer.parseInt(charSequence.toString());
                     if (val > 59) {
-                        minutes.setText(""+val/60);
-                        secondes.setText(""+val%60);
+                        minutes.setText(getString(R.string.nombre,val/60));
+                        secondes.setText(getString(R.string.nombre,val%60));
                     }
                 }
                 catch (Exception e) {
@@ -88,11 +99,5 @@ public class ChronoActivity  extends AppCompatActivity {
 
             }
         });
-    }
-
-    private String format() {
-        int minutes = (duration-elapsed)/60;
-        int secondes = (duration - elapsed)%60;
-        return String.format("%d:%02d",minutes,secondes);
     }
 }

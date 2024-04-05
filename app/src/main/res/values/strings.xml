@@ -1,8 +1,14 @@
 <resources>
-    <string name="app_name">Gym Tracker</string>
-    <string name="default_temps_restant">0:00</string>
-    <string name="default_secondes">0</string>
-    <string name="default_minutes">2</string>
+    <string name="app_name" translatable="false">Gym Tracker</string>
+    <string name="nombre" translatable="false">%d</string>
+    <string name="default_temps_restant" translatable="false">0:00</string>
+    <string name="default_secondes" translatable="false">0</string>
+    <string name="default_minutes" translatable="false">2</string>
+    <string name="heure_formatee" translatable="false">%d:%02d</string>
     <string name="chrono_button_text">Commencer</string>
     <string name="titre_chrono">Chronomètre temps de repos</string>
+    <string name="rebours">À rebours</string>
+    <string name="croissant">Croissant</string>
+    <string name="erreur_api">Erreur de connexion à l\'api</string>
+    <string name="connexion_api">Récuparations des exercices…</string>
 </resources>
