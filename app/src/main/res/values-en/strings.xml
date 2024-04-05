@@ -36,4 +36,11 @@
     <string name="samedi">Saturday</string>
     <string name="dimanche">Sunday</string>
     <string name="no_equipment">No equipment needed</string>
+    <string name="erreur_exercice">The session must have a least one exercice (duh)</string>
+    <string name="nouveau">New</string>
+    <string name="plannings">Plans</string>
+    <string name="accueil">Home</string>
+    <string name="exercices">Exercises</string>
+    <string name="chronom_tre">Timer</string>
+    <string name="quitter">Quit</string>
 </resources>

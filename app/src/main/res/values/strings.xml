@@ -37,6 +37,13 @@
     <string name="samedi">Samedi</string>
     <string name="dimanche">Dimanche</string>
     <string name="no_equipment">Besoin de rien\n(envie de toi)</string>
+    <string name="erreur_exercice">La séance doit comporter au moins un exercice</string>
+    <string name="nouveau">Nouveau</string>
+    <string name="plannings">Plannings</string>
+    <string name="accueil">Accueil</string>
+    <string name="exercices">Exercices</string>
+    <string name="chronom_tre">Chronomètre</string>
+    <string name="quitter">Quitter</string>
     <plurals name="exercice">
         <item quantity="one">exercice</item>
         <item quantity="other">exercices</item>
