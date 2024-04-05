@@ -26,18 +26,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bouton">
 
-        <RadioButton
-            android:id="@+id/croissant"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/croissant" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/titre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="16dp"
         android:text="@string/titre_chrono"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,10 +69,10 @@
         android:text="@string/default_secondes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_constraintVertical_bias="0.196" />
+        app:layout_constraintVertical_bias="0.129" />
 
     <EditText
         android:id="@+id/minutes"
@@ -98,7 +93,18 @@
         android:layout_height="wrap_content"
         android:checked="true"
         android:text="@string/rebours"
-        tools:layout_editor_absoluteX="318dp"
-        tools:layout_editor_absoluteY="263dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/radioGroup" />
+
+    <RadioButton
+        android:id="@+id/croissant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/croissant"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
